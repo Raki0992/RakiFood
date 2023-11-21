@@ -97,12 +97,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<!-- 내용 forEach안에서 id사용불가 (중복) -->
 										<c:forEach items="${member_list }" var="memberVO"> 
 										<tr>
-											<td class="mbsp_id">${memberVO.mbsp_id}</td>
-											<td>${memberVO.mbsp_name}</td>
-											<td>${memberVO.mbsp_email}</td>
-											<td>${memberVO.mbsp_addr}</td>
-											<td>${memberVO.mbsp_phone}</td>
-											<td><fmt:formatDate value="${memberVO.mbsp_lastlogin }" pattern="yyyy-MM-dd" /></td>
+											<td class="raki_id">${memberVO.raki_id}</td>
+											<td>${memberVO.raki_name}</td>
+											<td>${memberVO.raki_email}</td>
+											<td>${memberVO.raki_addr}</td>
+											<td>${memberVO.raki_phone}</td>
+											<td><fmt:formatDate value="${memberVO.raki_lastlogin }" pattern="yyyy-MM-dd" /></td>
 											<td><button class="btn btn-warning" name="btn_mem_edit">수정</button></td>
 											<td><button class="btn btn-danger btn_mem_del">삭제</button></td>
 										</tr>
@@ -150,9 +150,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											
 											</ul>
 										</nav>
-									</div>
-									<div>
-                    <div class="col-md-2 text-right" ><button type="button" class="btn btn-primary" id="btn_member_insert" role="button">회원등록</button></div>
 									</div>
 							</div>
 						</div>
@@ -275,13 +272,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     // 회원 삭제
     $(".btn_mem_del").on("click", function() {
       
-      let mbsp_id = $(this).parent().parent().find(".mbsp_id").text();
+      let raki_id = $(this).parent().parent().find(".raki_id").text();
 
       if(!confirm("삭제하시겠습니까?")) return;
       
-      actionForm.append('<input type="hidden" name="mbsp_id" id="mbsp_id" value="' + mbsp_id + '" />');
+      actionForm.append('<input type="hidden" name="raki_id" id="raki_id" value="' + raki_id + '" />');
       
-      console.log(mbsp_id);
+      console.log(raki_id);
       actionForm.attr("method", "post");
       actionForm.attr("action", "/admin/member/member_delete");
       actionForm.submit();
@@ -290,11 +287,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       // 회원 수정페이지로 이동
       $("button[name='btn_mem_edit']").on("click", function() {
 
-      let mbsp_id = $(this).parent().parent().find(".mbsp_id").text();
+      let raki_id = $(this).parent().parent().find(".raki_id").text();
 
-      console.log(mbsp_id);
-      actionForm.find("#mbsp_id").remove();  
-      actionForm.append('<input type="hidden" name="mbsp_id" id="mbsp_id" value="' + mbsp_id + '" />');
+      console.log(raki_id);
+      actionForm.find("#raki_id").remove();  
+      actionForm.append('<input type="hidden" name="raki_id" id="raki_id" value="' + raki_id + '" />');
 
       actionForm.attr("method", "get");
       actionForm.attr("action","/admin/member/member_edit");

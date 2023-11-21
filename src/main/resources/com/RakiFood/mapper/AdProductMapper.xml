@@ -56,7 +56,11 @@
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(*) FROM PRODUCT_TBL WHERE
+		SELECT 
+			COUNT(*) 
+		FROM 
+			PRODUCT_TBL 
+		WHERE
 	
 		<include refid="Criteria"></include>
 		

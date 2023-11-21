@@ -218,6 +218,8 @@ public class AdProductController {
 	@GetMapping("/pro_edit")
 	public void pro_edit(@ModelAttribute("cri") Criteria cri, Integer pro_num, Model model) throws Exception {
 		
+		log.info("상품코드" + pro_num);
+		
 		// 선택한 상품정보
 		ProductVO productVO = adProductService.pro_edit(pro_num);
 		// 역슬래시를 슬래시로 변환하는 작업 ( \ -> / )
@@ -225,11 +227,16 @@ public class AdProductController {
 		
 		model.addAttribute("ProductVO", productVO);
 		
+		log.info("상품정보" + productVO);
+		
 		// 1차 전체카테고리 GlobalControllerAdvice 클래스 Model참조.
 		
 		// 상품카테고리에서 2차카테고리를 이용한 1차카테고리 정보를 참조.
 		// productVO.getCg_code() : 상품테이블에 있는 2차카테고리 코드
 		CategoryVO firstCategory = adCategoryService.get(productVO.getCg_code());
+		
+		log.info("2차카테고리코드: " + firstCategory);
+		
 		model.addAttribute("first_category", firstCategory);
 		
 		// 1차카테고리를 부모로 둔 2차카테고리 정보. ex) Top(1)

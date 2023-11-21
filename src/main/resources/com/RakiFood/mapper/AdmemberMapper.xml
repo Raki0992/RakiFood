@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.RakiFood.mapper.AdmemberMapper">
+	
+	<!-- 공통된 sql구문작업 : 검색조건 -->
+	<sql id="Criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">	<!-- Criteria에서 getType메소드 가져와서 앞글자 소문자로 규칙-->
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'N'.toString()">
+							PRO_NAME like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'C'.toString()">
+							PRO_NUM like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'P'.toString()">
+							content like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<!-- CDATA 섹션(xml에 문법사용가능하게 함) -->
+	<select id="member_list" resultType="com.RakiFood.domain.MemberVO" parameterType="com.RakiFood.dto.Criteria">
+	<![CDATA[
+	select 
+		raki_id, raki_name, raki_email, raki_addr, raki_phone, raki_lastlogin
+	from 
+		(
+		select/*+INDEX_DESC(RAKI_TBL pk_raki_id)*/
+            rownum rn, raki_id, raki_name, raki_email, raki_addr, raki_phone, raki_lastlogin
+		from 
+            RAKI_TBL	
+		where 
+		]]>
+		
+		<include refid="Criteria"></include>
+		
+		<![CDATA[	
+			rownum <= #{pageNum} * #{amount}
+		)
+	where
+		 rn > (#{pageNum} -1) * #{amount} 
+		 ]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			RAKI_TBL 
+		WHERE
+	
+		<include refid="Criteria"></include>
+		
+		PRO_NUM > 0
+	</select>	
+	
+	<delete id="member_delete" parameterType="String">
+		DELETE FROM
+			RAKI_TBL
+		WHERE
+			raki_id = #{raki_id}
+	</delete>
+	
+	<select id="member_edit" resultType="com.RakiFood.domain.MemberVO" parameterType="String">
+		SELECT
+			raki_id, raki_name, raki_email, raki_addr, raki_phone, raki_lastlogin
+		FROM
+			RAKI_TBL
+		WHERE
+			raki_id = #{raki_id}
+	</select>
+	
+	<update id="member_edit_ok" parameterType="com.RakiFood.domain.MemberVO">
+		UPDATE
+			RAKI_TBL
+		SET
+			raki_name = #{raki_name}, 
+			raki_email = #{raki_email}, 
+			raki_addr = #{raki_addr}, 
+			raki_phone = #{raki_phone} 
+		WHERE
+			raki_id	= #{raki_id}
+	</update>
+	
+	</mapper>

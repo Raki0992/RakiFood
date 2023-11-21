@@ -49,15 +49,15 @@ public class MemberController {
 	// 3가지 구성요소 - HttpStatus, HttpHeaders, HttpBody : idUse
 	// ajax기능과 함께 사용
 	@GetMapping("/idCheck")
-	public ResponseEntity<String> idCheck(String mbsp_id) throws Exception {
+	public ResponseEntity<String> idCheck(String raki_id) throws Exception {
 		
-		log.info("아이디 : " + mbsp_id);
+		log.info("아이디 : " + raki_id);
 		
 		ResponseEntity<String> entity = null;
 		
 		// 서비스 메소드 호출구문작업.
 		String idUse = "";
-		if(memberService.idCheck(mbsp_id) != null) {
+		if(memberService.idCheck(raki_id) != null) {
 			idUse = "no";	// 아이디가 존재하여, 사용 불가능
 		}else {
 			idUse = "yes";	// 아이디가 존재하지 않아, 사용 가능
@@ -90,7 +90,7 @@ public class MemberController {
 	}
 	
 	// 1) 로그인 인증확인  -> 메인페이지(/) 주소이동.	2) 로그인 인증실패 -> 로그인 폼 주소로 이동
-	// String mbsp_id, String mbsp_password 파라미터로 사용
+	// String raki_id, String raki_password 파라미터로 사용
 	@PostMapping("/login")
 	public String login(LoginDTO dto, RedirectAttributes rttr, HttpSession session) throws Exception {
 		
@@ -178,7 +178,7 @@ public class MemberController {
 	// 회원수정 폼 : 인증 사용자의 회원가입정보를 뷰(View)에 출력
 	@GetMapping("/modify")
 	public void modify(HttpSession session, Model model) throws Exception {	// Model model 사용해서 jsp파일에 보여주기 가능
-		String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();	// MemberVO에 있는 mbsp_id 가져오기
+		String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();	// MemberVO에 있는 raki_id 가져오기
 		
 		MemberVO db_vo = memberService.login(raki_id);
 		model.addAttribute("memberVO", db_vo);
@@ -212,10 +212,10 @@ public class MemberController {
 	@GetMapping("/mypage")
 	public void mypage(HttpSession session, Model model) throws Exception {
 		
-		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();
+		String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();
 	      
 	      
-	      MemberVO db_vo = memberService.login(mbsp_id);
+	      MemberVO db_vo = memberService.login(raki_id);
 	      model.addAttribute("memberVO", db_vo);
 	}
 	
@@ -306,7 +306,7 @@ public class MemberController {
 						   @RequestParam("raki_email") String raki_email, RedirectAttributes rttr) {
 		
 		// 아이디와 메일정보 일치와 존재유무 확인
-		String db_mbsp_id = memberService.getIDEmail(raki_id, raki_email);
+		String db_raki_id = memberService.getIDEmail(raki_id, raki_email);
 		String temp_pw = "";
 		
 		String url = "";
@@ -314,7 +314,7 @@ public class MemberController {
 		
 		
 		
-		if(db_mbsp_id != null) {
+		if(db_raki_id != null) {
 			
 			// 임시비밀번호 생성
 			UUID uuid = UUID.randomUUID();
@@ -326,7 +326,7 @@ public class MemberController {
 			String encodepw = passwordEncoder.encode(temp_pw);	// 비밀번호 변수 선언
 			
 			// 회원에게 임시비밀번호를 메일발송
-			memberService.changePW(db_mbsp_id, encodepw);
+			memberService.changePW(db_raki_id, encodepw);
 			
 			// 회원 비밀번호를 암호화하여 DB에 수정작업
 			EmailDTO dto = new EmailDTO("DocMall", "DocMall@docmall.com", raki_email, "DocMall 임시비밀번호입니다.", 

@@ -9,7 +9,4 @@ public class CategoryVO {
 	private Integer cg_parent_code;	// 1차 카테고리 코드
 	private String  cg_name;	 
 	
-	
-	
-	
 }

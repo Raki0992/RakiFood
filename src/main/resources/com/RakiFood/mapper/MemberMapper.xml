@@ -6,7 +6,7 @@
 	
 	<select id="idCheck" parameterType="String" resultType="String"> <!-- parameterType 생략가능 -->
 		SELECT 
-			raki_id 
+			raki_id
 		FROM 
 			RAKI_TBL 
 		WHERE 

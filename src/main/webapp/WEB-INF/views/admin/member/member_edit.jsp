@@ -100,29 +100,29 @@ desired effect
                   <div class="form-group row">
 										<label for="title" class="col-md-2 col-form-label">아이디</label>
                     <div class="col-md-4">
-                      <input type="text" class="form-control" id="mbsp_id" name="mbsp_id"	value="${MemberVO.mbsp_id}">
+                      <input type="text" class="form-control" id="raki_id" name="raki_id"	value="${MemberVO.raki_id}" readonly>
                     </div>
 
                     <label for="title" class="col-md-2 col-form-label">이름</label> 
                     <div class="col-md-4">
-                      <input type="text" class="form-control" id="mbsp_name" name="mbsp_name"	value="${MemberVO.mbsp_name }">
+                      <input type="text" class="form-control" id="raki_name" name="raki_name"	value="${MemberVO.raki_name }" readonly>
                     </div>
                   </div>
 
                   <div class="form-group row">
 										<label for="title" class="col-md-2 col-form-label">이메일</label> 
                     <div class="col-md-4">
-                      <input type="text" class="form-control" id="mbsp_email" name="mbsp_email"	value="${MemberVO.mbsp_email }">
+                      <input type="text" class="form-control" id="raki_email" name="raki_email"	value="${MemberVO.raki_email }">
                     </div>
 
                     <label for="title" class="col-md-2 col-form-label">주소</label> 
                     <div class="col-md-4">
-                      <input type="text" class="form-control" id="mbsp_addr" name="mbsp_addr"	value="${MemberVO.mbsp_addr }">
+                      <input type="text" class="form-control" id="raki_addr" name="raki_addr"	value="${MemberVO.raki_addr }">
                     </div>
 
                     <label for="title" class="col-md-2 col-form-label">전화번호</label> 
                     <div class="col-md-4">
-                      <input type="text" class="form-control" id="mbsp_phone" name="mbsp_phone"	value="${MemberVO.mbsp_phone }">
+                      <input type="text" class="form-control" id="raki_phone" name="raki_phone"	value="${MemberVO.raki_phone }">
                     </div>
                   </div>
 
@@ -131,7 +131,7 @@ desired effect
                   <div class="form-group row">
 										<label for="title" class="col-md-2 col-form-label">마지막 접속 일자</label> 
                     <div class="col-md-4">
-                      <fmt:formatDate value="${memberVO.mbsp_lastlogin }" pattern="yyyy-MM-dd" />
+                      <fmt:formatDate value="${MemberVO.raki_lastlogin }" pattern="yyyy-MM-dd" />
                     </div>
                   </div>
                   

@@ -10,7 +10,7 @@
 			CG_PARENT_CODE,
 			CG_NAME 
 		FROM 
-			CATEGORY_TBL 
+			RF_CATEGORY_TBL 
 		WHERE 
 			CG_PARENT_CODE IS NULL
 	</select>
@@ -21,7 +21,7 @@
 			CG_PARENT_CODE, 
 			CG_NAME 
 		FROM 
-			CATEGORY_TBL 
+			RF_CATEGORY_TBL 
 		WHERE 
 			CG_PARENT_CODE = #{cg_parent_code} 
 	</select>
@@ -31,7 +31,7 @@
 		SELECT 
 			cg_code, cg_parent_code, cg_name 
 		FROM 
-			CATEGORY_TBL 
+			RF_CATEGORY_TBL 
 		WHERE 
 			CG_CODE = #{cg_code}
 	</select>

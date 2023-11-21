@@ -111,10 +111,11 @@ desired effect
                   </div>
 
                   <div class="form-group row">
-										<label for="title" class="col-md-2 col-form-label">할인율</label> 
+                  	<label for="title" class="col-md-2 col-form-label">할인율</label> 
                     <div class="col-md-4">
-                      <input type="text" class="form-control" id="pro_discount" name="pro_discount"	placeholder="할인율 입력...">
+                      <input type="text" class="form-control" id="pro_discount" name="pro_discount"	placeholder="상품가격 입력...">
                     </div>
+                  
                     <label for="title" class="col-md-2 col-form-label">제조사</label> 
                     <div class="col-md-4">
                       <input type="text" class="form-control" id="pro_publisher" name="pro_publisher"	placeholder="제조사 입력...">
