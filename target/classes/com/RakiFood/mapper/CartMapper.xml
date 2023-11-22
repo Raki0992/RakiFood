@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.RakiFood.mapper.CartMapper">
+	
+	<insert id="cart_add" parameterType="com.RakiFood.domain.RFCartVO">
+		merge into 
+			RF_CART_TBL
+		using 
+			dual
+		on 
+			(RAKI_ID = #{raki_id} and PRO_NUM = #{pro_num})
+		when 
+			matched then
+		update
+		    set RFCART_AMOUNT = RFCART_AMOUNT + #{rfcart_amount}
+		when 
+			not matched then
+		insert(rfcart_code, pro_num, raki_id, rfcart_amount)
+		values(seq_rfcart_code.nextval,#{pro_num},#{raki_id},#{rfcart_amount})
+	</insert>
+	
+	<select id="cart_list" resultType="com.RakiFood.dto.RFCartDTO">	<!-- select는 resultType -->
+		SELECT 
+			C.RFCART_CODE, C.PRO_NUM, C.RFCART_AMOUNT, P.PRO_NAME, P.PRO_PRICE, P.PRO_IMG, P.PRO_DISCOUNT, P.PRO_UP_FOLDER 
+		FROM 
+			PRODUCT_TBL P INNER JOIN RF_CART_TBL C 
+		ON 
+			P.PRO_NUM = C.PRO_NUM
+		WHERE 
+			C.RAKI_ID = #{raki_id}
+	</select> 
+	
+									<!-- 2가지 이상 들어오면 map -->
+	<update id="cart_amount_change" parameterType="map">
+		UPDATE
+			RF_CART_TBL
+		SET
+			RFCART_AMOUNT = #{rfcart_amount}
+		WHERE
+			RFCART_CODE = #{rfcart_code}
+	</update>
+	
+	<delete id="cart_list_del" parameterType="Long">
+		DELETE FROM
+			RF_CART_TBL
+		WHERE
+			RFCART_CODE = #{rfcart_code}
+	</delete>
+	
+	</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

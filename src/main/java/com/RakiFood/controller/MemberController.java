@@ -2,7 +2,6 @@ package com.RakiFood.controller;
 
 import java.util.UUID;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
@@ -311,8 +310,6 @@ public class MemberController {
 		
 		String url = "";
 		String msg = "";
-		
-		
 		
 		if(db_raki_id != null) {
 			

@@ -144,7 +144,7 @@ $(".movepage").on("click", function(e) {
     $.ajax({
       url: '/user/cart/cart_add',
       type: 'post',
-      data: {pro_num : $(this).data("pro_num"), cart_amount : 1},
+      data: {pro_num : $(this).data("pro_num"), rfcart_amount : 1},
       dataType: 'text',
       success: function(result) {
         if(result == "success") {
