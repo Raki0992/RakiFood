@@ -139,7 +139,7 @@ public class CartController {
 		
 		cartService.cart_sel_delete(rfcart_code_arr);
 		
-		log.info("카트코드" + rfcart_code_arr );
+//		log.info("카트코드" + rfcart_code_arr );
 		
 		entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		
