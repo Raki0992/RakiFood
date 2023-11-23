@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.RakiFood.domain.MemberVO;
@@ -95,10 +96,13 @@ public class CartController {
 	
 	// 장바구니 수량변경
 	@PostMapping("/cart_amount_change")
-	public ResponseEntity<String> cart_amount_change(Long cart_code, int cart_amount) throws Exception {
+	public ResponseEntity<String> cart_amount_change(Long rfcart_code, int rfcart_amount) throws Exception {
 		ResponseEntity<String> entity = null;
 		
-		cartService.cart_amount_change(cart_code, cart_amount);
+		cartService.cart_amount_change(rfcart_code, rfcart_amount);
+		
+//		log.info("카트코드" + rfcart_code);
+//		log.info("카트수량" + rfcart_amount);
 		
 		entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		
@@ -107,10 +111,12 @@ public class CartController {
 	
 	// 장바구니 목록에서 개별삭제(ajax)
 	@PostMapping("/cart_list_del")
-	public ResponseEntity<String> cart_list_del(Long cart_code) throws Exception {
+	public ResponseEntity<String> cart_list_del(Long rfcart_code) throws Exception {
 		ResponseEntity<String> entity = null;
 		
-		cartService.cart_list_del(cart_code);
+		cartService.cart_list_del(rfcart_code);
+		
+//		log.info("카트코드" + rfcart_code);
 		
 		entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		
@@ -119,12 +125,40 @@ public class CartController {
 	
 	// 장바구니 목록에서 개별삭제(nonajax)
 	@GetMapping("/cart_list_del")
-	public String cart_list_del2(Long cart_code) throws Exception {
+	public String cart_list_del2(Long rfcart_code) throws Exception {
 		
-		cartService.cart_list_del(cart_code);
+		cartService.cart_list_del(rfcart_code);
 		
 		return "redirect:/user/cart/cart_list";
 	}
+	
+	// 장바구니 목록에서 선택삭제  @RequestParam("pro_num_arr[]")List<Integer> pro_num_arr,
+	@PostMapping("/cart_sel_delete")
+	public ResponseEntity<String> cart_sel_delete(@RequestParam("rfcart_code_arr[]")List<Long> rfcart_code_arr) throws Exception {
+		ResponseEntity<String> entity = null;
+		
+		cartService.cart_sel_delete(rfcart_code_arr);
+		
+		log.info("카트코드" + rfcart_code_arr );
+		
+		entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		
+		return entity;
+	}
+	
+	@PostMapping("/cart_sel_delete2")
+	public ResponseEntity<String> cart_sel_delete2(@RequestParam("rfcart_code_arr[]")List<Long> rfcart_code_arr) throws Exception {
+		ResponseEntity<String> entity = null;
+		
+		cartService.cart_sel_delete(rfcart_code_arr);
+		
+		log.info("카트코드" + rfcart_code_arr );
+		
+		entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		
+		return entity;
+	}
+	
 }
 
 

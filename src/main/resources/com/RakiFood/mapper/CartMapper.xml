@@ -49,6 +49,23 @@
 			RFCART_CODE = #{rfcart_code}
 	</delete>
 	
+	<delete id="cart_sel_delete">
+		DELETE FROM
+			RF_CART_TBL
+		WHERE
+			RFCART_CODE = #{rfcart_code}
+	</delete>
+	
+	<delete id="cart_sel_delete2">
+		DELETE FROM
+			RF_CART_TBL
+		WHERE
+			RFCART_CODE  in 
+			<foreach collection="list" item="item" open="(" separator="," close=")">
+			 #{item.rfcart_code}
+		   </foreach>
+	</delete>
+	
 	</mapper>
 	
 	

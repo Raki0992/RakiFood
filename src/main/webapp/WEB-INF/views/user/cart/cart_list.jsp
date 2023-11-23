@@ -63,16 +63,16 @@
       </tr>
     </thead>
     <tbody>
-      <c:forEach items="${cart_list }" var="cartDTO">
+      <c:forEach items="${cart_list }" var="RFCartDTO">
       <tr>
-        <td><input type="checkbox" class="check" name="cart_code" value="${cartDTO.cart_code}"></td>
+        <td><input type="checkbox" class="check" name="rfcart_code" value="${RFCartDTO.rfcart_code}"></td>
         <td>
-        	<img width="50%" height="50" src="/user/cart/imageDisplay?dateFolderName=${cartDTO.pro_up_folder }&fileName=${cartDTO.pro_img}">
+        	<img width="50%" height="50" src="/user/cart/imageDisplay?dateFolderName=${RFCartDTO.pro_up_folder }&fileName=${RFCartDTO.pro_img}">
         </td>
-        <td>${cartDTO.pro_name }</td>
-        <td><span id="unitPrice">${cartDTO.pro_price}</span></td>
-        <td><input type="number" name="cart_amount" value="${cartDTO.cart_amount }" style="width: 35px;"> <button type="button" name="btn_cart_amount_change" class="btn btn-danger">변경</button></td>
-        <td><span class="unitTotalprice" id="unitTotalprice">${(cartDTO.pro_price * cartDTO.cart_amount)}</span></td>
+        <td>${RFCartDTO.pro_name }</td>
+        <td><span id="unitPrice">${RFCartDTO.pro_price}</span></td>
+        <td><input type="number" name="rfcart_amount" value="${RFCartDTO.rfcart_amount }" style="width: 35px;"> <button type="button" name="btn_cart_amount_change" class="btn btn-danger">변경</button></td>
+        <td><span class="unitTotalprice" id="unitTotalprice">${(RFCartDTO.pro_price * RFCartDTO.rfcart_amount)}</span></td>
         <td>
           <button type="button" name="btn_ajax_cart_del" class="btn btn-danger">삭제(ajax용)</button>
           <button type="button" name="btn_nonajax_cart_del" class="btn btn-danger">삭제(non-ajax용)</button>
@@ -83,6 +83,7 @@
     <tfoot>
     	<tr>
     		<td colspan="8"><button type="button" name="btn_sel_del" class="btn btn-danger">선택삭제</button></td>
+    		<td colspan="8"><button type="button" name="btn_sel_del2" class="btn btn-danger">선택삭제</button></td>
     	</tr>
       <tr>
         <td colspan="8" style="text-align: right;">
@@ -114,16 +115,16 @@
 
         let cur_btn_change = $(this);
 
-        let cart_amount = $(this).parent().find("input[name='cart_amount']").val();
-        // console.log("수량", cart_amount);
+        let rfcart_amount = $(this).parent().find("input[name='rfcart_amount']").val();
+        // console.log("수량", rfcart_amount);
 
-        let cart_code = $(this).parent().parent().find("input[name='cart_code']").val()
-        // console.log("장바구니코드", cart_code);
+        let rfcart_code = $(this).parent().parent().find("input[name='rfcart_code']").val()
+        // console.log("장바구니코드", rfcart_code);
 
         $.ajax({
           url: '/user/cart/cart_amount_change',
           type: 'post',
-          data: {cart_code : cart_code, cart_amount : cart_amount},
+          data: {rfcart_code : rfcart_code, rfcart_amount : rfcart_amount},
           dataType: 'text',
           success: function(result) {
             if(result == 'success') {
@@ -136,7 +137,7 @@
               
               // 장바구니 코드별 단위금액
               let unitTotalprice = cur_btn_change.parent().parent().find("span#unitTotalprice");
-              unitTotalprice.text((unitPrice - (unitPrice * unitDiscount)) * cart_amount);
+              unitTotalprice.text((unitPrice - (unitPrice * unitDiscount)) * rfcart_amount);
               
               // 전체주문금액
               fn_cart_sum_price();
@@ -155,14 +156,14 @@
       if(!confirm("장바구니 상품을 삭제하겠읍니까?")) return;
 
       let cur_btn_delete = $(this); // 선택된 버튼태그의 위치를 참조
-      let cart_code = $(this).parent().parent().find("input[name='cart_code']").val(); 
+      let rfcart_code = $(this).parent().parent().find("input[name='rfcart_code']").val(); 
 
-      // console.log("장바구니코드", cart_code);
+      // console.log("장바구니코드", rfcart_code);
 
       $.ajax({
         url: '/user/cart/cart_list_del',
         type: 'post',
-        data: {cart_code: cart_code}, 
+        data: {rfcart_code: cart_code}, 
         dataType : 'text',
         success : function(result) {
           if(result == "success") {
@@ -183,8 +184,8 @@
       
       if(!confirm("장바구니 상품을 삭제하겠읍니까?")) return;
       
-      let cart_code = $(this).parent().parent().find("input[name='cart_code']").val(); 
-      location.href = "/user/cart/cart_list_del?cart_code=" + cart_code;
+      let rfcart_code = $(this).parent().parent().find("input[name='rfcart_code']").val(); 
+      location.href = "/user/cart/cart_list_del?rfcart_code=" + rfcart_code;
     });
 
     //주문정보 페이지
@@ -224,21 +225,56 @@
         if(!confirm("선택 상품을 삭제하시겠습니까?")) return;
 
         //삭제 할 장바구니코드.  자바스크립트 배열 : https://www.w3schools.com/js/js_arrays.asp
-        let cart_code_arr = [];
+        let rfcart_code_arr = [];
 
         //선택한 체크박스 .
         $(".check:checked").each(function() {
-          cart_code_arr.push($(this).val());
+          rfcart_code_arr.push($(this).val());
         });
 
-        console.log("삭제할 장바구니코드: " + cart_code_arr);
+        console.log("삭제할 장바구니코드: " + rfcart_code_arr);
 
 
         $.ajax({
           url: '/user/cart/cart_sel_delete',
           type: 'post',
           dataType: 'text',
-          data: { cart_code_arr: cart_code_arr },
+          data: { rfcart_code_arr: rfcart_code_arr },
+          success: function(result) {
+            if(result == "success") {
+              alert("선택한 상품이 삭제되었습니다.");
+              location.href = "/user/cart/cart_list";
+            }
+          }
+        });
+
+      });
+
+      //장바구니 선택삭제 name="btn_sel_del2"
+    $("button[name='btn_sel_del2']").on("click", function() {
+        if($(".check:checked").length == 0) {
+          alert("삭제할 상품을 체크하세요.");
+          return;
+        }
+
+        if(!confirm("선택 상품을 삭제하시겠습니까?")) return;
+
+        //삭제 할 장바구니코드.  자바스크립트 배열 : https://www.w3schools.com/js/js_arrays.asp
+        let rfcart_code_arr = [];
+
+        //선택한 체크박스 .
+        $(".check:checked").each(function() {
+          rfcart_code_arr.push($(this).val());
+        });
+
+        console.log("삭제할 장바구니코드: " + rfcart_code_arr);
+
+
+        $.ajax({
+          url: '/user/cart/cart_sel_delete',
+          type: 'post',
+          dataType: 'text',
+          data: { rfcart_code_arr: rfcart_code_arr },
           success: function(result) {
             if(result == "success") {
               alert("선택한 상품이 삭제되었습니다.");

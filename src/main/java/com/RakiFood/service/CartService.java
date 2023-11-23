@@ -11,7 +11,11 @@ public interface CartService {
 	
 	List<RFCartDTO> cart_list(String mbsp_id);
 	
-	void cart_amount_change(Long cart_code, int cart_amount);
+	void cart_amount_change(Long rfcart_code, int rfcart_amount);
 	
-	void cart_list_del(Long cart_code);
+	void cart_list_del(Long rfcart_code);
+	
+	void cart_sel_delete(List<Long> rfcart_code_arr);
+	
+	void cart_sel_delete2(List<Long> rfcart_code_arr);
 }
