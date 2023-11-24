@@ -3,7 +3,9 @@ package com.RakiFood.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.RakiFood.domain.MemberVO;
 import com.RakiFood.domain.ProductVO;
+import com.RakiFood.domain.RFCartVO;
 import com.RakiFood.dto.Criteria;
 import com.RakiFood.dto.PageDTO;
+import com.RakiFood.dto.RFCartDTO;
+import com.RakiFood.service.CartService;
 import com.RakiFood.service.UserProductService;
 import com.RakiFood.util.FileUtils;
 
@@ -27,6 +33,8 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class UserProductController {
 	private final UserProductService userProductService;
+	
+	private final CartService cartService;
 	
 	// 메인 및 썸네일 이밎업로드 폴더경로 주입작업
 		@Resource(name = "uploadPath")	// servlet-context.xml의 bean이름 참조
@@ -81,6 +89,23 @@ public class UserProductController {
 			productVO.setPro_up_folder(productVO.getPro_up_folder().replace("\\", "/")); 
 			// db연동작업
 			model.addAttribute("productVO", productVO);
+		}
+		
+		// 바로 구매하기
+		@GetMapping("/buy_now")
+		public void buy_now(String type, Integer pro_num, HttpSession session, Model model) throws Exception {
+			
+			String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();
+			
+			if(type.equals("direct")) {
+				// 상품코드 모델
+				model.addAttribute("pro_num", pro_num);
+				
+			}else {
+				//장바구니 참조하여 모델.
+				//아이디로 장바구니 참조하여 모델링
+			}
+			
 		}
 	
 	

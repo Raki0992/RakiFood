@@ -63,15 +63,15 @@
       </tr>
     </thead>
     <tbody>
-      <c:forEach items="${order_info }" var="cartDTO" varStatus="status">
+      <c:forEach items="${order_info }" var="RFCartDTO" varStatus="status">
       <tr>
         <td>
-        	<img width="50%" height="50" src="/user/cart/imageDisplay?dateFolderName=${cartDTO.pro_up_folder }&fileName=${cartDTO.pro_img}">
+        	<img width="50%" height="50" src="/user/cart/imageDisplay?dateFolderName=${RFCartDTO.pro_up_folder }&fileName=${RFCartDTO.pro_img}">
         </td>
-        <td>${cartDTO.pro_name }</td>
-        <td><span id="unitPrice">${cartDTO.pro_price}</span></td>
-        <td>${cartDTO.cart_amount }</td>
-        <td><span class="unitTotalprice" id="unitTotalprice">${(cartDTO.pro_price * cartDTO.cart_amount)}</span></td>
+        <td>${RFCartDTO.pro_name }</td>
+        <td><span id="unitPrice">${RFCartDTO.pro_price}</span></td>
+        <td>${RFCartDTO.rfcart_amount }</td>
+        <td><span class="unitTotalprice" id="unitTotalprice">${(RFCartDTO.pro_price * RFCartDTO.rfcart_amount)}</span></td>
       </tr>
       </c:forEach>
     </tbody>
@@ -92,45 +92,45 @@
       <legend class="w-auto px-2">주문하시는 분</legend>
       
       <div class="form-group row">
-        <label for="mbsp_id" class="col-2">주문자</label>
+        <label for="raki_id" class="col-2">주문자</label>
         <div class="col-10">
-          <input type="text" class="form-control" id="b_mbsp_id" value="${loginStatus.mbsp_id }" readonly>
+          <input type="text" class="form-control" id="raki_id" value="${loginStatus.raki_id }" readonly>
         </div>
       </div>
       <div class="form-group row">
-        <label for="mbsp_name" class="col-2">이름</label>
+        <label for="raki_name" class="col-2">이름</label>
         <div class="col-10">
-          <input type="text" class="form-control" id="b_mbsp_name" value="${loginStatus.mbsp_name }" readonly>
+          <input type="text" class="form-control" id="raki_name" value="${loginStatus.raki_name }" readonly>
         </div>
       </div>
       <div class="form-group row">
-        <label for="mbsp_email" class="col-2">전자우편</label>
+        <label for="raki_email" class="col-2">전자우편</label>
         <div class="col-8">
-          <input type="email" class="form-control" id="b_mbsp_email" value="${loginStatus.mbsp_email }" readonly>
+          <input type="email" class="form-control" id="raki_email" value="${loginStatus.raki_email }" readonly>
         </div>
       </div>
       <div class="form-group row">
         <label for="sample2_postcode" class="col-2">우편번호</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="b_mbsp_zipcode" value="${loginStatus.mbsp_zipcode }" readonly>
+          <input type="text" class="form-control" id="raki_zipcode" value="${loginStatus.raki_zipcode }" readonly>
         </div>
       </div>
       <div class="form-group row">
         <label for="sample2_address" class="col-2">기본주소</label>
         <div class="col-10">
-          <input type="text" class="form-control" id="b_mbsp_addr" value="${loginStatus.mbsp_addr }" readonly>
+          <input type="text" class="form-control" id="raki_addr" value="${loginStatus.raki_addr }" readonly>
         </div>
       </div>
       <div class="form-group row">
         <label for="sample2_detailAddress" class="col-2">상세주소</label>
         <div class="col-10">
-          <input type="text" class="form-control" id="b_mbsp_deaddr" value="${loginStatus.mbsp_deaddr }" readonly>
+          <input type="text" class="form-control" id="raki_deaddr" value="${loginStatus.raki_deaddr }" readonly>
         </div>
       </div>
       <div class="form-group row">
-        <label for="mbsp_phone" class="col-2">전화번호</label>
+        <label for="raki_phone" class="col-2">전화번호</label>
         <div class="col-10">
-          <input type="text" class="form-control" id="b_mbsp_phone" value="${loginStatus.mbsp_phone }" readonly>
+          <input type="text" class="form-control" id="raki_phone" value="${loginStatus.raki_phone }" readonly>
         </div>
       </div>
       
@@ -141,9 +141,9 @@
       <legend class="w-auto px-2">받으시는 분</legend>
       
       <div class="form-group row">
-        <label for="mbsp_id" class="col-2">수령인(이름)</label>
+        <label for="raki_id2" class="col-2">수령인(이름)</label>
         <div class="col-8">
-          <input type="text" class="form-control" name="mbsp_name" id="mbsp_name" placeholder="이름 입력...">
+          <input type="text" class="form-control" name="raki_name2" id="raki_name2" placeholder="이름 입력...">
         </div>
         <div class="col-2">
         	<input type="checkbox" id="same">수령인과 동일.
@@ -152,7 +152,7 @@
       <div class="form-group row">
         <label for="sample2_postcode" class="col-2">우편번호</label>
         <div class="col-8">
-          <input type="text" class="form-control" name="mbsp_zipcode" id="sample2_postcode" placeholder="우편번호...">
+          <input type="text" class="form-control" name="raki_zipcode2" id="sample2_postcode" placeholder="우편번호...">
         </div>
         <div class="col-2">
         	<button type="button" onclick="sample2_execDaumPostcode()" class="btn btn-outline-info">우편번호 찾기</button>
@@ -161,20 +161,20 @@
       <div class="form-group row">
         <label for="sample2_address" class="col-2">기본주소</label>
         <div class="col-10">
-          <input type="text" class="form-control" name="mbsp_addr" id="sample2_address" placeholder="기본주소입력...">
+          <input type="text" class="form-control" name="raki_addr2" id="sample2_address" placeholder="기본주소입력...">
         </div>
       </div>
       <div class="form-group row">
         <label for="sample2_detailAddress" class="col-2">상세주소</label>
         <div class="col-10">
-          <input type="text" class="form-control" name="mbsp_deaddr" id="sample2_detailAddress" placeholder="상세주소입력...">
+          <input type="text" class="form-control" name="raki_deaddr2" id="sample2_detailAddress" placeholder="상세주소입력...">
           <input type="hidden" id="sample2_extraAddress" placeholder="참고항목">
         </div>
       </div>
       <div class="form-group row">
-        <label for="mbsp_phone" class="col-2">전화번호</label>
+        <label for="raki_phone" class="col-2">전화번호</label>
         <div class="col-10">
-          <input type="text" class="form-control" name="mbsp_phone" id="mbsp_phone" placeholder="전화번호입력...">
+          <input type="text" class="form-control" name="raki_phone2" id="raki_phone2" placeholder="전화번호입력...">
         </div>
       </div>
       </fieldset>
@@ -182,14 +182,14 @@
       <fieldset class="form-group border p-3">
       <legend class="w-auto px-2">결제방법 선택</legend>
       <div class="form-group row">
-        <label for="mbsp_phone" class="col-2">결제방법</label>
+        <label for="raki_phone" class="col-2">결제방법</label>
         <div class="col-10">
           <input type="radio" name="paymethod" id="paymethod1" value="nobank">무통장 입금
           <input type="radio" name="paymethod" id="paymethod2" value="kakaopay"><img src="/image/payment.png">
         </div>
       </div>
       <div class="form-group row" id="nobank_info" style="display: none;">
-        <label for="mbsp_phone" class="col-2">무통장 입금정보</label>
+        <label for="raki_phone" class="col-2">무통장 입금정보</label>
         <div class="col-10">
           은행명 
           <select name="pay_nobank" id="pay_nobank">
@@ -314,26 +314,34 @@
   <!-- 카테고리 메뉴 자바스크립트 작업소스 -->
   <script src="/js/category_menu.js"></script>
   
+  
+
   <script>
 	$(document).ready(function() {
 
     //수령인과 동일
     $("#same").on("click", function() {
 
-      if($("#same").is(":checked")) {
-        // console.log("체크");
+      let a = $("#sample2_postcode").val();
+      console.log("첫번째" + a);
 
-        $("#mbsp_name").val($("#b_mbsp_name").val());
-        $("#sample2_postcode").val($("#b_mbsp_zipcode").val());
-        $("#sample2_address").val($("#b_mbsp_addr").val());
-        $("#sample2_detailAddress").val($("#b_mbsp_deaddr").val());
-        $("#mbsp_phone").val($("#b_mbsp_phone").val());
+      if($("#same").is(":checked")) {
+        console.log("체크");
+        
+        $("#raki_name2").val($("#raki_name").val());
+        $("#sample2_postcode").val($("#raki_zipcode").val());
+        $("#sample2_address").val($("#raki_addr").val());
+        $("#sample2_detailAddress").val($("#raki_deaddr").val());
+        $("#raki_phone2").val($("#raki_phone").val());
+
+        // let b = $("#sample2_postcode").val();
+        // console.log("두번째" + b);
       }else {
-        $("#mbsp_name").val("");
+        $("#raki_name2").val("");
         $("#sample2_postcode").val("");
         $("#sample2_address").val("");
         $("#sample2_detailAddress").val("");
-        $("#mbsp_phone").val("");
+        $("#raki_phone2").val("");
       }
     });
 
@@ -361,11 +369,11 @@
           type: 'get',
           data: {
             paymethod : $("input[name='paymethod']:checked").val(),
-            ord_name: $("#mbsp_name").val(),
-            ord_zipcode: $("input[name='mbsp_zipcode']").val(),
-            ord_addr_basic: $("input[name='mbsp_addr']").val(),
-            ord_addr_detail: $("input[name='mbsp_deaddr']").val(),
-            ord_tel: $("#mbsp_phone").val(),
+            ord_name: $("#raki_name").val(),
+            ord_zipcode: $("input[name='raki_zipcode']").val(),
+            ord_addr_basic: $("input[name='raki_addr']").val(),
+            ord_addr_detail: $("input[name='raki_deaddr']").val(),
+            ord_tel: $("#raki_phone").val(),
             ord_price: $("#cart_total_price").text(),
             totalprice: $("#cart_total_price").text(),
           },

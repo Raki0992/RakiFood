@@ -155,7 +155,27 @@ $(".movepage").on("click", function(e) {
         }
       }
     });
+  });
 
+  // 바로 구매하기 
+  $("button[name='btn_buy']").on("click", function(){
+    console.log("구매하기");
+
+    let pro_num = $(this).data("pro_num");
+
+    $.ajax({
+      url: '/user/product/buy_now',
+      type: 'get',
+      data: {pro_num : pro_num, rfcart_amount : 1},
+      dataType: 'text',
+      success: function(result) {
+        if(result == "success") {
+          if(confirm("주문 하시겠습니까?")) {
+            location.href = "/user/product/buy_now?type=direct&pro_num=" + pro_num;
+          }
+        }
+      }
+    });
   });
 
   // 상품이미지 또는 상품명 클릭시 상품상세로 보내는 작업

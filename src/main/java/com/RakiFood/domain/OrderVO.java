@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class OrderVO {
 	/*
-	CREATE TABLE ORDER_TBL(
+	CREATE TABLE RF_ORDER_TBL(
         ORD_CODE            NUMBER                  PRIMARY KEY,
         RAKI_ID             VARCHAR2(15)            NOT NULL,
         ORD_NAME            VARCHAR2(30)            NOT NULL,

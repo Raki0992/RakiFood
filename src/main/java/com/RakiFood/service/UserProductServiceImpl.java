@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.RakiFood.domain.ProductVO;
+import com.RakiFood.domain.RFCartVO;
 import com.RakiFood.dto.Criteria;
 import com.RakiFood.mapper.UserProductMapper;
 
@@ -28,6 +29,11 @@ public class UserProductServiceImpl implements UserProductService {
 	@Override
 	public ProductVO pro_detail(Integer pro_num) {
 		return userProductMapper.pro_detail(pro_num);
+	}
+
+	@Override
+	public void buy_now(RFCartVO rvo, Integer pro_num) {
+		userProductMapper.buy_now(rvo, pro_num); 
 	}
 
 }

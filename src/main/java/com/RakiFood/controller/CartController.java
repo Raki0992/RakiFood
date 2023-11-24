@@ -63,7 +63,7 @@ public class CartController {
 		
 		List<RFCartDTO> cart_list = cartService.cart_list(raki_id);
 		
-		double cart_total_price = 0;
+		int cart_total_price = 0;
 		
 //		cart_list.forEach(vo-> {
 //			vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/")); 	// 역슬래쉬를 슬래쉬로
@@ -76,7 +76,7 @@ public class CartController {
 			RFCartDTO vo = cart_list.get(i);
 			
 			vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
-			cart_total_price += ((double)vo.getPro_price() - (vo.getPro_price() * vo.getPro_discount() * 1/100)) * (double)vo.getRfcart_amount();
+			cart_total_price += (vo.getPro_price() * vo.getRfcart_amount());
 		}
 		
 		model.addAttribute("cart_list", cart_list);

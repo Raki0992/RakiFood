@@ -82,8 +82,8 @@
     </tbody>
     <tfoot>
     	<tr>
-    		<td colspan="8"><button type="button" name="btn_sel_del" class="btn btn-danger">선택삭제</button></td>
-    		<td colspan="8"><button type="button" name="btn_sel_del2" class="btn btn-danger">선택삭제</button></td>
+    		<td colspan="8"><button type="button" name="btn_sel_del" class="btn btn-danger">선택삭제1</button></td>
+    		<td colspan="8"><button type="button" name="btn_sel_del2" class="btn btn-danger">선택삭제2</button></td>
     	</tr>
       <tr>
         <td colspan="8" style="text-align: right;">

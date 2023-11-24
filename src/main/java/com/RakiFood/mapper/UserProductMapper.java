@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.RakiFood.domain.ProductVO;
+import com.RakiFood.domain.RFCartVO;
 import com.RakiFood.dto.Criteria;
 
 public interface UserProductMapper {
@@ -19,6 +20,7 @@ public interface UserProductMapper {
 	
 	ProductVO pro_detail(Integer pro_num);
 	
+	void buy_now(RFCartVO rvo, Integer pro_num);
 }
 
 
