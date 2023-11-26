@@ -208,7 +208,6 @@
       <div class="form-group row text-center">
         <div class="col-12">
           <button type="button" class="btn btn-primary" id="btn_order">주문및결제하기</button>
-          <button type="button" class="btn btn-primary" id="btn_back">주문취소</button>
         </div>
       </div>
       </form>
@@ -394,11 +393,11 @@
           type: 'get',
           data: {
             paymethod : $("input[name='paymethod']:checked").val(),
-            ord_name: $("#raki_name").val(),
-            ord_zipcode: $("input[name='raki_zipcode']").val(),
-            ord_addr_basic: $("input[name='raki_addr']").val(),
-            ord_addr_detail: $("input[name='raki_deaddr']").val(),
-            ord_tel: $("#raki_phone").val(),
+            ord_name: $("#mbsp_name").val(),
+            ord_zipcode: $("input[name='mbsp_zipcode']").val(),
+            ord_addr_basic: $("input[name='mbsp_addr']").val(),
+            ord_addr_detail: $("input[name='mbsp_deaddr']").val(),
+            ord_tel: $("#mbsp_phone").val(),
             ord_price: $("#cart_total_price").text(),
             totalprice: $("#cart_total_price").text(),
             pay_nobank_user :$("#pay_nobank_user").val(),
@@ -438,12 +437,6 @@
     $("#pay_nobank").on("change", function() {
        $("#pay_bankaccount").val($(this).val());
        
-    });
-
-    // 주문취소
-    $("#btn_back").on("click", function() {
-      if(!confirm("주문을 취소하시겠습니까?")) return;
-      location.href="/user/cart/cart_list";
     });
 
 	}); // ready event end

@@ -93,18 +93,24 @@ public class UserProductController {
 		
 		// 바로 구매하기
 		@GetMapping("/buy_now")
-		public void buy_now(String type, Integer pro_num, HttpSession session, Model model) throws Exception {
+		public void buy_now(HttpSession session, Model model) throws Exception {
 			
 			String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();
 			
-			if(type.equals("direct")) {
-				// 상품코드 모델
-				model.addAttribute("pro_num", pro_num);
+			List<RFCartDTO> order_info = cartService.cart_list(raki_id);
+			
+			int order_price = 0;
 				
-			}else {
-				//장바구니 참조하여 모델.
-				//아이디로 장바구니 참조하여 모델링
+			for(int i=0; i<order_info.size(); i++) {
+				RFCartDTO vo = order_info.get(i);
+				
+				vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
+				
+				order_price += (vo.getPro_price()* vo.getRfcart_amount());
 			}
+					
+			model.addAttribute("order_info", order_info);
+			model.addAttribute("order_price", order_price);
 			
 		}
 	

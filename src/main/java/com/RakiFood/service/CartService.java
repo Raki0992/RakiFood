@@ -18,4 +18,6 @@ public interface CartService {
 	void cart_sel_delete(List<Long> rfcart_code_arr);
 	
 	void cart_sel_delete2(List<Long> rfcart_code_arr);
+	
 }
+	

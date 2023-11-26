@@ -8,5 +8,4 @@ public interface AdminService {
 	
 	void loginTimeUpdate(String admin_id);
 	
-
 }

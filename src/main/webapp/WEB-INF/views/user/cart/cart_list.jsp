@@ -76,6 +76,7 @@
         <td>
           <button type="button" name="btn_ajax_cart_del" class="btn btn-danger">삭제(ajax용)</button>
           <button type="button" name="btn_nonajax_cart_del" class="btn btn-danger">삭제(non-ajax용)</button>
+          <button type="button" name="btn_select_order" class="btn btn-success">구매</button>
         </td>
       </tr>
       </c:forEach>
@@ -93,7 +94,6 @@
       <tr>
         <td colspan="8" style="text-align: center;">
           <button type="button" id="btn_product" class="btn btn-primary">쇼핑계속하기</button>
-          <button type="button" id="btn_cart_empty" class="btn btn-primary">장바구니 비우기</button>
           <button type="button" id="btn_order" class="btn btn-primary">주문하기</button>
         </td>
       </tr>
@@ -182,15 +182,23 @@
     //장바구니 삭제(non-ajax용)
     $("button[name='btn_nonajax_cart_del']").on("click", function() {
       
-      if(!confirm("장바구니 상품을 삭제하겠읍니까?")) return;
+      if(!confirm("장바구니 상품을 삭제하겠습니까?")) return;
       
+      let cur_btn_delete = $(this);
       let rfcart_code = $(this).parent().parent().find("input[name='rfcart_code']").val(); 
       location.href = "/user/cart/cart_list_del?rfcart_code=" + rfcart_code;
     });
 
-    //주문정보 페이지
+    //주문정보 페이지   
     $("button#btn_order").on("click", function() {
       location.href = "/user/order/order_info";
+    });
+
+    // 선택 상품 주문
+    $("button[name='btn_select_order']").on("click", function() {
+      let cur_btn_order = $(this); 
+      let rfcart_code = $(this).parent().parent().find("input[name='rfcart_code']").val();
+      location.href = "/user/cart/cart_list_buy";
     });
 
     //제목행 체크박스 선택

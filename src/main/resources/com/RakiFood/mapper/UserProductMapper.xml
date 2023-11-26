@@ -43,25 +43,11 @@
 		 	PRO_NUM = #{pro_num}
 	</select>
 	
-	<select id="buy_now" resultType="com.RakiFood.domain.ProductVO">	pro_num
-		SELECT
-			 C.RFCART_CODE, C.PRO_NUM, C.RFCART_AMOUNT, P.PRO_NAME, P.PRO_PRICE, P.PRO_IMG, P.PRO_DISCOUNT, P.PRO_UP_FOLDER
-		FROM
-			PRODUCT_TBL P INNER JOIN RF_CART_TBL C 
-		ON
-			P.PRO_NUM = C.PRO_NUM
-		WHERE
-			C.RAKI_ID = #{raki_id}
-	</select>
-	
-	<select id="">	장바구니
-	
-	SELECT
-			P.PRO_NAME, P.PRO_PRICE, P.PRO_IMG, P.PRO_DISCOUNT, P.PRO_UP_FOLDER
-		FROM
-			PRODUCT_TBL P
-		WHERE
-			C.RAKI_ID = #{raki_id}
+	<select id="buy_now" resultType="com.RakiFood.domain.OrderVO">
+		INSERT INTO
+				RF_ORDER_TBL(ord_code, raki_id, ord_name, ord_zipcode, ord_addr_basic, ord_addr_detail, ord_tel, ord_price, ORD_REGDATE, ORD_STATUS, PAYMENT_STATUS)
+			VALUES
+				(#{ord_code},#{raki_id},#{ord_name},#{ord_zipcode},#{ord_addr_basic},#{ord_addr_detail},#{ord_tel},#{ord_price},SYSDATE,#{ord_status},#{payment_status})
 	</select>
 	
 	</mapper>

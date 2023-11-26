@@ -20,5 +20,6 @@ public interface CartMapper {
 	void cart_sel_delete(Long rfcart_code);
 	
 	void cart_sel_delete2(List<Long> rfcart_code_arr);
+	
 }
  

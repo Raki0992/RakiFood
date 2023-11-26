@@ -109,6 +109,9 @@ public class CartController {
 		return entity;
 	}
 	
+	// 장바구니 목록에서 개별구매
+
+	
 	// 장바구니 목록에서 개별삭제(ajax)
 	@PostMapping("/cart_list_del")
 	public ResponseEntity<String> cart_list_del(Long rfcart_code) throws Exception {

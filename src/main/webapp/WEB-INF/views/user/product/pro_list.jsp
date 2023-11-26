@@ -62,7 +62,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" name="btn_cart_add" data-pro_num="${productVO.pro_num}" class="btn btn-sm btn-outline-secondary">Cart</button>
-                  <button type="button" name="btn_buy"   class="btn btn-sm btn-outline-secondary">Buy</button>
+                  <button type="button" name="btn_buy" data-pro_num="${productVO.pro_num}"  class="btn btn-sm btn-outline-secondary">Buy</button>
                 </div>
                 <small class="text-muted">
                 	<fmt:formatNumber type="currencyt" pattern="￦#,###" value="${productVO.pro_price }"></fmt:formatNumber>
@@ -171,7 +171,7 @@ $(".movepage").on("click", function(e) {
       success: function(result) {
         if(result == "success") {
           if(confirm("주문 하시겠습니까?")) {
-            location.href = "/user/product/buy_now?type=direct&pro_num=" + pro_num;
+            location.href = "/user/product/buy_now";
           }
         }
       }

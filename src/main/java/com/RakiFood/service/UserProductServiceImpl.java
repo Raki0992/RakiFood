@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.RakiFood.domain.OrderVO;
 import com.RakiFood.domain.ProductVO;
 import com.RakiFood.domain.RFCartVO;
 import com.RakiFood.dto.Criteria;
@@ -32,8 +33,8 @@ public class UserProductServiceImpl implements UserProductService {
 	}
 
 	@Override
-	public void buy_now(RFCartVO rvo, Integer pro_num) {
-		userProductMapper.buy_now(rvo, pro_num); 
+	public void buy_now(OrderVO o_vo) {
+		userProductMapper.buy_now(o_vo); 
 	}
 
 }
