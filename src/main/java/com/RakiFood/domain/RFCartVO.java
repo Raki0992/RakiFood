@@ -1,8 +1,10 @@
 package com.RakiFood.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class RFCartVO {
 /*	
  * CREATE TABLE RF_CART_TBL(

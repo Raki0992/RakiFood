@@ -9,7 +9,7 @@ public interface CartService {
 
 	void cart_add(RFCartVO vo);
 	
-	List<RFCartDTO> cart_list(String mbsp_id);
+	List<RFCartDTO> cart_list(String raki_id);
 	
 	void cart_amount_change(Long rfcart_code, int rfcart_amount);
 	

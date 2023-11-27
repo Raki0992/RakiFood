@@ -3,6 +3,8 @@ package com.RakiFood.mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.RakiFood.domain.OrderVO;
+import com.RakiFood.domain.PaymentVO;
+import com.RakiFood.domain.RFCartVO;
 
 public interface OrderMapper {
 
@@ -16,4 +18,10 @@ public interface OrderMapper {
 		
 	// 장바구니 테이블 삭제
 	void cart_del(String raki_id);
+	
+	// 결제테이블 저장
+	void payment_insert(PaymentVO vo);
+	
+	// 바로구매
+	RFCartVO directOrder(RFCartVO vo);
 }

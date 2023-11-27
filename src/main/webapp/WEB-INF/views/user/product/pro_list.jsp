@@ -157,26 +157,26 @@ $(".movepage").on("click", function(e) {
     });
   });
 
-  // 바로 구매하기 
-  $("button[name='btn_buy']").on("click", function(){
-    console.log("구매하기");
+  // // 바로 구매하기 
+  // $("button[name='btn_buy']").on("click", function(){
+  //   console.log("구매하기");
 
-    let pro_num = $(this).data("pro_num");
+  //   let pro_num = $(this).data("pro_num");
 
-    $.ajax({
-      url: '/user/product/buy_now',
-      type: 'get',
-      data: {pro_num : pro_num, rfcart_amount : 1},
-      dataType: 'text',
-      success: function(result) {
-        if(result == "success") {
-          if(confirm("주문 하시겠습니까?")) {
-            location.href = "/user/product/buy_now";
-          }
-        }
-      }
-    });
-  });
+  //   $.ajax({
+  //     url: '/user/product/buy_now',
+  //     type: 'get',
+  //     data: {pro_num : pro_num, rfcart_amount : 1},
+  //     dataType: 'text',
+  //     success: function(result) {
+  //       if(result == "success") {
+  //         if(confirm("주문 하시겠습니까?")) {
+  //           location.href = "/user/product/buy_now";
+  //         }
+  //       }
+  //     }
+  //   });
+  // });
 
   // 상품이미지 또는 상품명 클릭시 상품상세로 보내는 작업
   $(".btn_pro_img").on("click", function() {
@@ -190,6 +190,20 @@ $(".movepage").on("click", function(e) {
     // <input type='hidden' name='pro_num' value='상품코드'>
     actionForm.append("<input type='hidden' name='pro_num' value='" + pro_num + "'>");
     actionForm.submit();
+  });
+
+  // 바로 구매하기
+  $("button[name='btn_buy']").on("click", function() {
+
+    // 주문페이지, 상품코드, 수량(기본값 1)
+    let pro_num = $("input[name='btn_buy']").val();
+    let ord_amount = 1;
+
+    let url = "/user/order/buy_now?pro_num=" + pro_num + "&ord_amount=" + ord_amount + "&type=direct";
+
+    console.log("주문작성URL :" + url);
+
+    location.href = url;
   });
 
 }); // ready

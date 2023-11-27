@@ -371,10 +371,10 @@
           data: {
             paymethod : $("input[name='paymethod']:checked").val(),
             ord_name: $("#raki_name").val(),
-            ord_zipcode: $("input[name='raki_zipcode']").val(),
-            ord_addr_basic: $("input[name='raki_addr']").val(),
-            ord_addr_detail: $("input[name='raki_deaddr']").val(),
-            ord_tel: $("#raki_phone").val(),
+            ord_zipcode: $("input[name='raki_zipcode2']").val(),
+            ord_addr_basic: $("input[name='raki_addr2']").val(),
+            ord_addr_detail: $("input[name='raki_deaddr2']").val(),
+            ord_tel: $("#raki_phone2").val(),
             ord_price: $("#cart_total_price").text(),
             totalprice: $("#cart_total_price").text(),
           },
@@ -395,10 +395,10 @@
           data: {
             paymethod : $("input[name='paymethod']:checked").val(),
             ord_name: $("#raki_name").val(),
-            ord_zipcode: $("input[name='raki_zipcode']").val(),
-            ord_addr_basic: $("input[name='raki_addr']").val(),
-            ord_addr_detail: $("input[name='raki_deaddr']").val(),
-            ord_tel: $("#raki_phone").val(),
+            ord_zipcode: $("input[name='raki_zipcode2']").val(),
+            ord_addr_basic: $("input[name='raki_addr2']").val(),
+            ord_addr_detail: $("input[name='raki_deaddr2']").val(),
+            ord_tel: $("#raki_phone2").val(),
             ord_price: $("#cart_total_price").text(),
             totalprice: $("#cart_total_price").text(),
             pay_nobank_user :$("#pay_nobank_user").val(),
@@ -437,7 +437,6 @@
     // 입금은행 선택시.
     $("#pay_nobank").on("change", function() {
        $("#pay_bankaccount").val($(this).val());
-       
     });
 
     // 주문취소

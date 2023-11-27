@@ -21,7 +21,7 @@
 			INSERT INTO 
 				ORDETAIL_TBL(ord_code, pro_num, dt_amount, dt_price)
 			SELECT 
-				#{ord_code}, c.pro_num, c.cart_amount, p.pro_price
+				#{ord_code}, c.pro_num, c.rfcart_amount, p.pro_price
 			FROM 
 				RF_CART_TBL c inner join PRODUCT_TBL p on c.pro_num = p.pro_num
 			WHERE 
@@ -34,4 +34,36 @@
 			WHERE
 				raki_id = #{raki_id}
 		</delete>
+		
+		<insert id="payment_insert" parameterType="com.RakiFood.domain.PaymentVO">
+			INSERT INTO 
+				PAYMENT2(PAY_CODE, ORD_CODE, raki_id, PAY_METHOD, PAY_DATE, PAY_TOT_PRICE
+			<if test="pay_nobank_price != null and pay_nobank_price !=''"> 
+			, PAY_NOBANK_PRICE, PAY_NOBANK_USER, PAY_NOBANK, PAY_MEMO, PAY_BANKACCOUNT 
+			</if>
+			) VALUES (SEQ_PAYMENT2_CODE.NEXTVAL,#{ord_code}, #{raki_id}, #{pay_method}, sysdate, #{pay_tot_price}
+			
+			<if test="pay_nobank_price != null and pay_nobank_price !=''"> 
+			,#{pay_nobank_price}, #{pay_nobank_user}, #{pay_nobank}, #{pay_memo}, #{pay_bankaccount} 
+			</if>
+			)
+		</insert>
+		
+		<select id="directOrder" resultType="com.RakiFood.domain.RFCartVO">
+			SELECT
+				pro_up_folder,
+				pro_img, 
+				pro_price,
+				#{rfcart_amount} as rfcart_amount,
+				pro_price * #{rfcart_amount} as pro_discount,
+				#{raki_id} as raki_id,
+				pro_num,
+				pro_name
+			FROM 
+				PRODUCT_TBL
+			WHERE
+				pro_num = #{pro_num}
+				
+		</select>
+		
 	</mapper>

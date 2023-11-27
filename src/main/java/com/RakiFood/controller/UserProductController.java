@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.RakiFood.domain.MemberVO;
@@ -91,29 +92,6 @@ public class UserProductController {
 			model.addAttribute("productVO", productVO);
 		}
 		
-		// 바로 구매하기
-		@GetMapping("/buy_now")
-		public void buy_now(HttpSession session, Model model) throws Exception {
-			
-			String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();
-			
-			List<RFCartDTO> order_info = cartService.cart_list(raki_id);
-			
-			int order_price = 0;
-				
-			for(int i=0; i<order_info.size(); i++) {
-				RFCartDTO vo = order_info.get(i);
-				
-				vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
-				
-				order_price += (vo.getPro_price()* vo.getRfcart_amount());
-			}
-					
-			model.addAttribute("order_info", order_info);
-			model.addAttribute("order_price", order_price);
-			
-		}
-	
 	
 }
 

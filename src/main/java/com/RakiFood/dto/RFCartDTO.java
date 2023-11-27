@@ -12,5 +12,7 @@ public class RFCartDTO {
 	private int 	pro_price;
 	private String	pro_img;
 	private int 	pro_discount;
-	private String	pro_up_folder; 
+	private String	pro_up_folder;
+	
+//	private String raki_id;
 }
