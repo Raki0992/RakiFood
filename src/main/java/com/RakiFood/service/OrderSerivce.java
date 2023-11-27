@@ -2,7 +2,7 @@ package com.RakiFood.service;
 
 import com.RakiFood.domain.OrderVO;
 import com.RakiFood.domain.PaymentVO;
-import com.RakiFood.domain.RFCartVO;
+import com.RakiFood.domain.ProductVO;
 
 public interface OrderSerivce {
 
@@ -11,5 +11,5 @@ public interface OrderSerivce {
 	// 주문하기 1)
 	void order_insert(OrderVO o_vo, PaymentVO p_vo); // 주문테이블 저장
 	
-	RFCartVO directOrder(RFCartVO vo);
+	ProductVO directOrder(ProductVO vo);
 }

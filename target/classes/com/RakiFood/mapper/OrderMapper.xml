@@ -54,16 +54,13 @@
 				pro_up_folder,
 				pro_img, 
 				pro_price,
-				#{rfcart_amount} as rfcart_amount,
-				pro_price * #{rfcart_amount} as pro_discount,
-				#{raki_id} as raki_id,
+				pro_amount,
 				pro_num,
 				pro_name
 			FROM 
 				PRODUCT_TBL
 			WHERE
 				pro_num = #{pro_num}
-				
 		</select>
 		
 	</mapper>

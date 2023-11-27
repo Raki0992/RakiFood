@@ -72,7 +72,6 @@ public class AdmemberController {
 			
 			admemberService.member_edit_ok(vo);
 			
-			
 			return "redirect:/admin/member/member_list";
 		}
 		

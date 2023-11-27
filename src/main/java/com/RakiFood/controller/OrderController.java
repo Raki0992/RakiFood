@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.RakiFood.domain.MemberVO;
 import com.RakiFood.domain.OrderVO;
 import com.RakiFood.domain.PaymentVO;
+import com.RakiFood.domain.ProductVO;
 import com.RakiFood.domain.RFCartVO;
 import com.RakiFood.dto.RFCartDTO;
 import com.RakiFood.kakaopay.ApproveResponse;
@@ -63,38 +64,33 @@ public class OrderController {
 		model.addAttribute("order_price", order_price);
 	}
 	
-	// 바로 구매하기. 장바구니 저장 안하고 구매하기. 주문상품
+	// 바로 구매하기. 장바구니 저장 안하고 구매하기. 주문상품(회원은 장바구니 & 비회원은 구매하기?)
 			@GetMapping("/buy_now")
-			public void buy_now(@RequestParam(value = "type", required = false) String type, @RequestParam(value = "pro_num", required = false) Integer pro_num, 
-					@RequestParam(value = "rfcart_amount", required = false)Integer rfcart_amount, HttpSession session, Model model) throws Exception {
+			public void buy_now(ProductVO vo, @RequestParam(value = "type", required = false) String type, @RequestParam(value = "pro_num", required = false) Integer pro_num, 
+				@RequestParam(value = "ord_amount", required = false)Integer ord_amount, HttpSession session, Model model) throws Exception {
 				
 				String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();
 				
-				List<RFCartVO> orderList = null;
-				
-				if(type.equals("direct")) { // 바로주문
+				if(type.equals("direct")) { // 바로주문에 사용할 정보들
 					
-					RFCartVO rFCartVO = new RFCartVO(null, pro_num, raki_id, rfcart_amount);
+					int pro_amount =  ord_amount;
+					ProductVO productVO = orderSerivce.directOrder(vo);
+					model.addAttribute("productVO", productVO);
 					
-					rFCartVO.ㄴㄷㅅ
+					productVO.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
 					
-//					RFCartDTO rfCartDTO = cartService.cart_list(raki_id);
+				}else if (type.contentEquals("cart")) { // 장바구니에 사용할 정보들
 					
-					orderList = new ArrayList<>();
-					orderList.add(rFCartVO);
+					List<RFCartDTO> cart_list = cartService.cart_list(raki_id);
 					
-				}else if (type.contentEquals("cart")) { // 장바구니
-					
-//					orderList = cartService.cart_list(raki_id);
-					
-//					orderList.forEach(vo -> {
+//					cart_list.forEach(vo) -> {
 //					vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
 //					});
 					
 				}
 
 				// 주문내역
-				model.addAttribute("orderList", orderList);
+				model.addAttribute("productVO", vo);
 			}
 	
 	// 상품상세에서 주문하기

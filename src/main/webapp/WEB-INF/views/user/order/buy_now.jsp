@@ -63,17 +63,15 @@
       </tr>
     </thead>
     <tbody>
-      <c:forEach items="${order_info }" var="RFCartDTO" varStatus="status">
-      <tr>
+      <tr var="productVO" varStatus="status">
         <td>
-        	<img width="50%" height="50" src="/user/cart/imageDisplay?dateFolderName=${RFCartDTO.pro_up_folder }&fileName=${RFCartDTO.pro_img}">
+        	<img width="50%" height="50" src="/user/cart/imageDisplay?dateFolderName=${productVO.pro_up_folder }&fileName=${productVO.pro_img}">
         </td>
-        <td>${RFCartDTO.pro_name }</td>
-        <td><span id="unitPrice">${RFCartDTO.pro_price}</span></td>
-        <td>${RFCartDTO.rfcart_amount }</td>
-        <td><span class="unitTotalprice" id="unitTotalprice">${(RFCartDTO.pro_price * RFCartDTO.rfcart_amount)}</span></td>
+        <td>${productVO.pro_name }</td>
+        <td><span id="unitPrice">${productVO.pro_price}</span></td>
+        <td>${productVO.rfcart_amount }</td>
+        <td><span class="unitTotalprice" id="unitTotalprice">${(productVO.pro_price * productVO.rfcart_amount)}</span></td>
       </tr>
-      </c:forEach>
     </tbody>
     <tfoot>
     	<tr>

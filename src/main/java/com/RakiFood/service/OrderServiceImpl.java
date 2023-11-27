@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.RakiFood.domain.OrderVO;
 import com.RakiFood.domain.PaymentVO;
+import com.RakiFood.domain.ProductVO;
 import com.RakiFood.domain.RFCartVO;
 import com.RakiFood.mapper.OrderMapper;
 
@@ -31,8 +32,9 @@ public class OrderServiceImpl implements OrderSerivce {
 	}
 
 	@Override
-	public RFCartVO directOrder(RFCartVO vo) {
+	public ProductVO directOrder(ProductVO vo) {
 		return orderMapper.directOrder(vo);
 	}
+
 
 }

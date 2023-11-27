@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.RakiFood.domain.OrderVO;
 import com.RakiFood.domain.PaymentVO;
+import com.RakiFood.domain.ProductVO;
 import com.RakiFood.domain.RFCartVO;
 
 public interface OrderMapper {
@@ -23,5 +24,5 @@ public interface OrderMapper {
 	void payment_insert(PaymentVO vo);
 	
 	// 바로구매
-	RFCartVO directOrder(RFCartVO vo);
+	ProductVO directOrder(ProductVO vo);
 }
