@@ -2,12 +2,9 @@ package com.RakiFood.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.RakiFood.domain.ProductVO;
 import com.RakiFood.dto.Criteria;
 
-@Service
 public interface AdProductService {
 
 	void pro_insert(ProductVO vo);
