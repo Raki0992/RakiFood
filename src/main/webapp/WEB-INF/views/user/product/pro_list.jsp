@@ -178,7 +178,7 @@ $(".movepage").on("click", function(e) {
     let pro_num = $(this).data("pro_num");
     let ord_amount = 1;
 
-    let url = "/user/order/buy_now?pro_num=" + pro_num + "&ord_amount=" + ord_amount + "&type=direct";
+    let url = "/user/order/buy_now?pro_num=" + pro_num + "&ord_amount=" + ord_amount;
 
     console.log("주문작성URL :" + url);
 

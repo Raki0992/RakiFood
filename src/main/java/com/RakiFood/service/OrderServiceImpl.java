@@ -32,9 +32,16 @@ public class OrderServiceImpl implements OrderSerivce {
 	}
 
 	@Override
-	public ProductVO directOrder(ProductVO vo) {
-		return orderMapper.directOrder(vo);
+	public ProductVO directOrder(Integer pro_num) {
+		return orderMapper.directOrder(pro_num);
 	}
+
+	@Override
+	public void cart_amount_change(Integer pro_num, Integer pro_amount) {
+		orderMapper.cart_amount_change(pro_num, pro_amount);
+	}
+
+	
 
 
 }

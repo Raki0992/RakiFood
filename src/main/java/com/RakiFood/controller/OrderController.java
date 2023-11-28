@@ -1,6 +1,5 @@
 package com.RakiFood.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,34 +64,43 @@ public class OrderController {
 		model.addAttribute("order_price", order_price);
 	}
 	
-	// 바로 구매하기. 장바구니 저장 안하고 구매하기. 주문상품(회원은 장바구니 & 비회원은 구매하기?)
+	// 바로 구매하기. 장바구니 저장 안하고 구매하기. 주문상품
 			@GetMapping("/buy_now")
-			public void buy_now(ProductVO vo, @RequestParam(value = "type", required = false) String type, @RequestParam(value = "pro_num", required = false) Integer pro_num, 
-				@RequestParam(value = "ord_amount", required = false)Integer ord_amount, HttpSession session, Model model) throws Exception {
+			public void buy_now( Integer pro_num, Integer ord_amount, HttpSession session, Model model) throws Exception {
+				
+				ProductVO vo = orderSerivce.directOrder(pro_num);
+				
+				log.info("바로구매하기" + vo);
 				
 				String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();
 				
-				if(type.equals("direct")) { // 바로주문에 사용할 정보들
-					
+					vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
+				
 					int pro_amount =  ord_amount;
-					ProductVO productVO = orderSerivce.directOrder(vo);
-					model.addAttribute("productVO", productVO);
+					model.addAttribute("vo", vo);
 					
-					productVO.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
-					
-				}else if (type.contentEquals("cart")) { // 장바구니에 사용할 정보들
-					
-					List<RFCartDTO> cart_list = cartService.cart_list(raki_id);
-					
-//					cart_list.forEach(vo) -> {
-//					vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
-//					});
-					
-				}
+					log.info("바로구매" + vo);
+				
 
 				// 주문내역
 				model.addAttribute("productVO", vo);
 			}
+			
+			// 바로 구매하기 (수량변경)
+			@PostMapping("/buy_amount_change")
+			public ResponseEntity<String> buy_amount_change(Integer pro_num, Integer pro_amount) throws Exception {
+				ResponseEntity<String> entity = null;
+				
+				orderSerivce.cart_amount_change(pro_num, pro_amount);
+				
+				log.info("상품수량" + pro_amount);
+				log.info("상품번호" + pro_num);
+				
+				entity = new ResponseEntity<String>("success", HttpStatus.OK);
+				
+				return entity;
+			}
+			
 	
 	// 상품상세에서 주문하기
 		@GetMapping("/order_ready")

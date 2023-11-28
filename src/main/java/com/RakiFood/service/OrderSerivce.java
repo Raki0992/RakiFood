@@ -11,5 +11,7 @@ public interface OrderSerivce {
 	// 주문하기 1)
 	void order_insert(OrderVO o_vo, PaymentVO p_vo); // 주문테이블 저장
 	
-	ProductVO directOrder(ProductVO vo);
+	ProductVO directOrder(Integer pro_num);
+	
+	void cart_amount_change(Integer pro_num, Integer pro_amount);
 }

@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Param;
 import com.RakiFood.domain.OrderVO;
 import com.RakiFood.domain.PaymentVO;
 import com.RakiFood.domain.ProductVO;
-import com.RakiFood.domain.RFCartVO;
 
 public interface OrderMapper {
 
@@ -24,5 +23,7 @@ public interface OrderMapper {
 	void payment_insert(PaymentVO vo);
 	
 	// 바로구매
-	ProductVO directOrder(ProductVO vo);
+	ProductVO directOrder(Integer pro_num);
+	
+	void cart_amount_change(@Param("pro_num")Integer pro_num, @Param("pro_amount")Integer pro_amount);
 }

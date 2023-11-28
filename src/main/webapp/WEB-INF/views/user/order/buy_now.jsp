@@ -57,6 +57,7 @@
       <tr>
         <th scope="col">상품</th>
         <th scope="col">상품명</th>
+        <th scope="col">상품코드</th>
         <th scope="col">판매가</th>
         <th scope="col">수량</th>
         <th scope="col">합계</th>
@@ -68,15 +69,16 @@
         	<img width="50%" height="50" src="/user/cart/imageDisplay?dateFolderName=${productVO.pro_up_folder }&fileName=${productVO.pro_img}">
         </td>
         <td>${productVO.pro_name }</td>
-        <td><span id="unitPrice">${productVO.pro_price}</span></td>
-        <td>${productVO.rfcart_amount }</td>
-        <td><span class="unitTotalprice" id="unitTotalprice">${(productVO.pro_price * productVO.rfcart_amount)}</span></td>
+        <td><span name="pro_num" value="${productVO.pro_num }">${productVO.pro_num}</span></td>
+        <td><span id="unitPrice" >${productVO.pro_price}</span></td>
+        <td><input type="number" name="pro_amount" id="unitTotalProduct" value="${productVO.pro_amount }" style="width: 35px;"> <button type="button" name="btn_product_amount_change" class="btn btn-danger">변경</button></td>
+        <td><span class="unitTotalprice" id="unitTotalprice">${(productVO.pro_price * productVO.pro_amount)}</span></td>
       </tr>
     </tbody>
     <tfoot>
     	<tr>
-        <td colspan="8" style="text-align: right;">상품 총 <span id="cart_price_count">${fn:length(order_info)}</span>
-          주문금액 : <span id="cart_total_price">${order_price}</span>
+        <td colspan="8" style="text-align: right;">
+          주문금액 : <span id="cart_total_price">${productVO.pro_price}</span>
         </td>
       </tr>
       
@@ -437,7 +439,54 @@
        
     });
 
+    //바로구매 목록에서 수량변경클릭시
+    $("button[name='btn_product_amount_change']").on("click", function() {
+
+        let cur_btn_change = $(this);
+
+        let pro_amount = $(this).parent().find("input[name='pro_amount']").val();
+        console.log("수량", pro_amount);
+
+        let pro_num = $(this).parent().parent().find("span[name='pro_num']").text();
+        console.log("장바구니코드", pro_num);
+
+        $.ajax({
+          url: '/user/order/buy_amount_change',
+          type: 'post',
+          data: {pro_num : pro_num, pro_amount : pro_amount},
+          dataType: 'text',
+          success: function(result) {
+            if(result == 'success') {
+
+              alert("수량변경이 되었읍니다.");
+              // 합계금액 계산작업
+              // 금액 = (판매가 - (판매가 * 할인율)) * 수량
+              let unitPrice = cur_btn_change.parent().parent().find("span#unitPrice").text();
+              let unitDiscount = cur_btn_change.parent().parent().find("span#unitDiscount").text();
+              
+              // 장바구니 코드별 단위금액
+              let unitTotalprice = cur_btn_change.parent().parent().find("span#unitTotalprice");
+              unitTotalprice.text((unitPrice - (unitPrice * unitDiscount)) * pro_amount);
+              
+              // 전체주문금액
+              fn_cart_sum_price();
+            }
+          }
+        });
+
+    });
+
 	}); // ready event end
+
+  // 장바구니 전체주문금액
+  function fn_cart_sum_price() {
+   let sumPrice = 0;
+    $(".unitTotalprice").each(function() {
+      sumPrice += Number($(this).text()); 
+    });
+    $("#cart_total_price").text(sumPrice);
+  }
+
   </script>  
   </body>
 </html>

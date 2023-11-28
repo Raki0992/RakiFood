@@ -49,7 +49,7 @@
 			)
 		</insert>
 		
-		<select id="directOrder" resultType="com.RakiFood.domain.RFCartVO">
+		<select id="directOrder" resultType="com.RakiFood.domain.ProductVO">
 			SELECT
 				pro_up_folder,
 				pro_img, 
@@ -62,5 +62,14 @@
 			WHERE
 				pro_num = #{pro_num}
 		</select>
+		
+		<update id="cart_amount_change" parameterType="com.RakiFood.domain.ProductVO">
+		UPDATE
+			PRODUCT_TBL
+		SET
+			pro_amount = #{pro_amount}
+		WHERE
+			pro_num = #{pro_num}
+	</update>
 		
 	</mapper>
