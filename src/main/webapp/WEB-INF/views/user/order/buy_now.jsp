@@ -48,7 +48,7 @@
 <%@include file="/WEB-INF/views/comm/header.jsp" %>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
- <p>주문정보</p>
+<p>주문정보</p>
 </div>
 
 <div class="container">
@@ -78,7 +78,7 @@
     <tfoot>
     	<tr>
         <td colspan="8" style="text-align: right;">
-          주문금액 : <span id="cart_total_price">${productVO.pro_price}</span>
+          주문금액 : <span id="cart_total_price">${(productVO.pro_price * productVO.pro_amount)}</span>
         </td>
       </tr>
       

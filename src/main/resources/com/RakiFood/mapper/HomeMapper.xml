@@ -17,13 +17,13 @@
 				<trim prefix="OR">
 					<choose>
 						<when test="type == 'N'.toString()">
-							RAKI_NAME like '%' || #{keyword} || '%'
+							raki_name like '%' || #{keyword} || '%'
 						</when>
 						<when test="type == 'C'.toString()">
-							free_num like '%' || #{keyword} || '%'
+							raki_id like '%' || #{keyword} || '%'
 						</when>
 						<when test="type == 'P'.toString()">
-							FREE_CONTENT like '%' || #{keyword} || '%'
+							free_title like '%' || #{keyword} || '%'
 						</when>
 					</choose>
 				</trim>

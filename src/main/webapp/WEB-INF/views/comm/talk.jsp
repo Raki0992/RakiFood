@@ -94,12 +94,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<!-- 내용 forEach안에서 id사용불가 (중복) -->
 										<c:forEach items="${talk_list }" var="FreeTalkVO"> 
 										<tr>
+                      <td>${FreeTalkVO.free_num}</td>
 											<td class="raki_id">${FreeTalkVO.raki_id}</td>
 											<td>${FreeTalkVO.raki_name}</td>
 											<td>${FreeTalkVO.free_title}</td>
 											<td>${FreeTalkVO.free_content}</td>
 											<td><fmt:formatDate value="${FreeTalkVO.raki_updatedate }" pattern="yyyy-MM-dd" /></td>
-                      <td>${FreeTalkVO.free_content}</td>
 											<td><button class="btn btn-warning" name="btn_mem_edit">수정</button></td>
 											<td><button class="btn btn-danger btn_mem_del">삭제</button></td>
 										</tr>
