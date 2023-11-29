@@ -66,5 +66,31 @@
 		free_num > 0
 	</select>
 	
+	<delete id="freetalk_delete" parameterType="String">
+		DELETE FROM
+			FreeTalk
+		WHERE
+			RAKI_ID = #{raki_id}
+	</delete>
+	
+	<select id="freetalk_edit" resultType="com.RakiFood.domain.FreeTalkVO">
+		SELECT
+			free_num, raki_id, raki_name, free_title, free_content, free_empty <!-- ,raki_updatedate -->
+		FROM
+			FreeTalk
+		WHERE
+			RAKI_ID = #{raki_id}
+	</select>
+	
+	<update id="freetalk_edit_ok">
+		UPDATE
+			FreeTalk
+		SET
+			free_title = #{free_title},
+			free_content = #{free_content}
+			<!-- ,raki_updatedate = sysdate -->
+		WHERE
+			RAKI_ID = #{raki_id}
+	</update>
 	
 	</mapper>

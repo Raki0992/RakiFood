@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.RakiFood.domain.FreeTalkVO;
 import com.RakiFood.dto.Criteria;
@@ -40,8 +42,26 @@ public class FreeTalkController {
 		
 	}
 	
+	@PostMapping("/talk_delete")
+	public String talk_delete(Criteria cri, String raki_id) throws Exception {
+		homeService.freetalk_delete(raki_id);
+		
+		return "redirect:/comm/talk";
+	}
 	
+	@GetMapping("talk_edit")
+	public void talk_edit(@ModelAttribute("cri") Criteria cri, String raki_id, Model model) throws Exception {
+		FreeTalkVO talk_edit_page = homeService.freetalk_edit(raki_id);
+		
+		model.addAttribute("talk_edit_page", talk_edit_page);
+	}
 	
+	@PostMapping("talk_edit")
+	public String talk_edit(Criteria cri, FreeTalkVO vo, RedirectAttributes rttr) throws Exception {
+		homeService.freetalk_edit_ok(vo);
+		
+		return "redirect:/comm/talk";
+	}
 	
 	
 	

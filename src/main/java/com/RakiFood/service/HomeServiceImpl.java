@@ -31,4 +31,19 @@ public class HomeServiceImpl implements HomeService {
 		return homeMapper.getTotalCount(cri);
 	}
 
+	@Override
+	public void freetalk_delete(String raki_id) {
+		homeMapper.freetalk_delete(raki_id);
+	}
+
+	@Override
+	public FreeTalkVO freetalk_edit(String raki_id) {
+		return homeMapper.freetalk_edit(raki_id);
+	}
+
+	@Override
+	public void freetalk_edit_ok(FreeTalkVO vo) {
+		homeMapper.freetalk_edit_ok(vo);
+	}
+
 }

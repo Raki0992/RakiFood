@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- 날짜, 금액, 시간 등... -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -261,7 +263,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       actionForm.submit();
     });
 
-    // 회원 삭제
+    // 글 삭제
     $(".btn_mem_del").on("click", function() {
       
       let raki_id = $(this).parent().parent().find(".raki_id").text();
@@ -270,29 +272,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
       actionForm.append('<input type="hidden" name="raki_id" id="raki_id" value="' + raki_id + '" />');
       
-      console.log(raki_id);
+      // console.log(raki_id);
       actionForm.attr("method", "post");
-      actionForm.attr("action", "/admin/member/member_delete");
+      actionForm.attr("action", "/comm/talk_delete");
       actionForm.submit();
     });
 
-      // 회원 수정페이지로 이동
+      // 글 수정페이지로 이동
       $("button[name='btn_mem_edit']").on("click", function() {
 
       let raki_id = $(this).parent().parent().find(".raki_id").text();
 
-      console.log(raki_id);
+      console.log("아이디" + raki_id);
       actionForm.find("#raki_id").remove();  
       actionForm.append('<input type="hidden" name="raki_id" id="raki_id" value="' + raki_id + '" />');
 
       actionForm.attr("method", "get");
-      actionForm.attr("action","/admin/member/member_edit");
+      actionForm.attr("action","/comm/talk_edit");
       actionForm.submit();  // 확인하기
     });
 
-    // 회원 등록페이지로 이동
+    // 글 등록페이지로 이동
     $("#btn_member_insert").on("click", function() {
-      location.href ="/admin/member/member_insert";
+      location.href ="/comm/talk_insert";
     });
 
   }); // ready안에 입력

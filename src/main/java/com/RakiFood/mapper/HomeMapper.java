@@ -13,4 +13,10 @@ public interface HomeMapper {
 	List<FreeTalkVO> free_list(Criteria cri);
 
 	int getTotalCount(Criteria cri);
+	
+	void freetalk_delete(String raki_id);
+	
+	FreeTalkVO freetalk_edit(String raki_id);
+	
+	void freetalk_edit_ok(FreeTalkVO vo);
 }
