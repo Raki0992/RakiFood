@@ -38,7 +38,7 @@
       <td class="rew_content">{{rew_content}}</td>
       <td class="rew_score">{{displayStar rew_score}}</td>
       <td class="rew_regdate">{{convertDate rew_regdate}}</td>
-      <td>{{authControlView mbsp_id rew_num rew_score}}</td>
+      <td>{{authControlView raki_id rew_num rew_score}}</td>
     </tr>
     {{/each}}
   </tbody>
@@ -244,18 +244,18 @@ $(".movepage").on("click", function(e) {
 
 
   // 상품이미지 또는 상품명 클릭시 상품상세로 보내는 작업
-  $(".btn_pro_img").on("click", function() {
-    console.log('상품상세설명');
-
-    actionForm.attr("action","/user/product/pro_detail");
-
-    let pro_num = $(this).data("pro_num");
-
-    actionForm.find("input[name='pro_num']").remove();
-    // <input type='hidden' name='pro_num' value='상품코드'>
-    actionForm.append("<input type='hidden' name='pro_num' value='" + pro_num + "'>");
-    actionForm.submit();
-  });
+//  $(".btn_pro_img").on("click", function() {
+//    console.log('상품상세설명');
+//
+//    actionForm.attr("action","/user/product/pro_detail");
+//
+//    let pro_num = $(this).data("pro_num");
+//
+//    actionForm.find("input[name='pro_num']").remove();
+// <input type='hidden' name='pro_num' value='상품코드'>
+//    actionForm.append("<input type='hidden' name='pro_num' value='" + pro_num + "'>");
+//actionForm.submit();
+//});
 
   // 수량 변경시  unit_price
   $("#btn_quantity").on("change", function() {
@@ -298,8 +298,8 @@ $(".movepage").on("click", function(e) {
     function getReviewInfo(url) {
       $.getJSON(url, function(data) {
 
-        // console.log("상품후기", data.list[0].rew_content);
-        // console.log("페이지정보", data.pageMaker.total);
+        console.log("상품후기", data.list[0].rew_content);
+        console.log("페이지정보", data.pageMaker.total);
         // review_list
 
         printReviewList(data.list, $("#review_list"), $("#reviewTemplate"))
@@ -390,12 +390,12 @@ $(".movepage").on("click", function(e) {
     });
 
     // 상품후기수정/삭제버튼 표시
-    Handlebars.registerHelper("authControlView", function(mbsp_id, rew_num, rew_score) {
+    Handlebars.registerHelper("authControlView", function(raki_id, rew_num, rew_score) {
       let str = "";
-      let login_id = '${sessionScope.loginStatus.mbsp_id}';
+      let login_id = '${sessionScope.loginStatus.raki_id}';
 
       // 로그인한 사용자와 상품후기 등록 사용자 일치 확인
-      if(login_id == mbsp_id) {
+      if(login_id == raki_id) {
         str += '<button type="button" name="btn_review_edit" class="btn btn-primary" data-rew_score="' + rew_score + '">수정</button>';
         str += '<button type="button" name="btn_review_del" class="btn btn-danger" data-rew_num="' + rew_num + '">삭제</button>';
         
@@ -574,7 +574,7 @@ $(".movepage").on("click", function(e) {
     <div class="modal-content">
       <div class="modal-header">
         <!-- <h5 class="modal-title" id="exampleModalLabel">상품후기</h5> -->
-        <b>상품후기</b><span id="rew_num">5</span><span id="rew_regdate"></span>
+        <b>상품후기</b><span id="rew_num"></span><span id="rew_regdate"></span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
