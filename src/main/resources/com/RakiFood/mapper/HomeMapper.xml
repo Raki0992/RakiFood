@@ -75,7 +75,7 @@
 	
 	<select id="freetalk_edit" resultType="com.RakiFood.domain.FreeTalkVO">
 		SELECT
-			free_num, raki_id, raki_name, free_title, free_content, free_empty <!-- ,raki_updatedate -->
+			free_num, raki_id, raki_name, free_title, free_content, free_updatedate, free_empty 
 		FROM
 			FreeTalk
 		WHERE
@@ -87,8 +87,8 @@
 			FreeTalk
 		SET
 			free_title = #{free_title},
-			free_content = #{free_content}
-			<!-- ,raki_updatedate = sysdate -->
+			free_content = #{free_content},
+			free_updatedate = sysdate
 		WHERE
 			RAKI_ID = #{raki_id}
 	</update>

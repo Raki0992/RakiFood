@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.RakiFood.mapper.ReviewMapper">
+		
+		<insert id="review_insert" parameterType="com.RakiFood.domain.RFReviewVO">
+		INSERT INTO 
+			RFREVIEW_TBL(rew_num, raki_id, pro_num, rew_content, rew_score)
+		VALUES 
+			(seq_RFREVIEW_TBL.NEXTVAL, #{raki_id}, #{pro_num}, #{rew_content}, #{rew_score})
+	</insert>
+	
+	
+	</mapper>

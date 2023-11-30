@@ -183,7 +183,7 @@ desired effect
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">상품수정</button>
-                    <button type="reset" class="btn btn-primary">취소</button>
+                    <button type="reset" class="btn btn-primary" id="btn_cancel">취소</button>
                   </div>
 				</div>
 			</form>
@@ -353,6 +353,14 @@ desired effect
           $("#img_preview").attr("src", e.target.result);
         }
       });
+
+      // 상품 수정 취소
+      $("#btn_cancel").on("click", function() {
+        actionForm.append('<input type="hidden" name="pageNum" id="pageNum" value="' + pageNum + '" />');
+
+        location.href="/admin/product/pro_list";
+      });
+      
 
   });
 </script>

@@ -125,7 +125,7 @@ desired effect
                   <div class="form-group row">
 										<label for="title" class="col-md-2 col-form-label">수정일</label> 
                     <div class="col-md-4">
-                      <fmt:formatDate value="${talk_edit_page.raki_updatedate }" pattern="yyyy-MM-dd" />
+                      <fmt:formatDate value="${talk_edit_page.free_updatedate }" pattern="yyyy-MM-dd" />
                     </div>
                   </div>
                    

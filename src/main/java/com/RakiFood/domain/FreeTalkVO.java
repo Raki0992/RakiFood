@@ -22,6 +22,6 @@ public class FreeTalkVO {
 	private String raki_name;
 	private String free_title;
 	private String free_content;
-	private Date   raki_updatedate;
+	private Date   free_updatedate;
 	private String free_empty;
 }
