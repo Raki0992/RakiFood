@@ -301,6 +301,14 @@ desired effect
       isCheck = this.checked;
     });
 
+    // 상품이미지 또는 상품명클릭시
+    $("a.move").on("click", function(e) {
+      e.preventDefault();
+
+      actionForm.attr("action","/admin/product/pro_get");
+      actionForm.submit();
+    });
+
     // 목록에서 데이터행 체크박스 선택
     $("input[name='check']").on("click", function() {
       // 제목행 체크상태 변경
@@ -416,6 +424,9 @@ desired effect
       let pro_num = $(this).parent().parent().find("input[name='check']").val();
 
       console.log(pro_num);
+
+      // 뒤로가기 클릭후
+      actionForm.find("input[name='pro_num']").remove();
 
       // <input type="hidden" name="pro_num" id="pro_num" value="24" />
       actionForm.append('<input type="hidden" name="pro_num" id="pro_num" value="' + pro_num + '" />');

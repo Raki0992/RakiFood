@@ -71,7 +71,7 @@
         <td>${productVO.pro_name }</td>
         <td><span name="pro_num" value="${productVO.pro_num }">${productVO.pro_num}</span></td>
         <td><span id="unitPrice" >${productVO.pro_price}</span></td>
-        <td><input type="number" name="pro_amount" id="unitTotalProduct" value="${productVO.pro_amount }" style="width: 35px;"> <button type="button" name="btn_product_amount_change" class="btn btn-danger">변경</button></td>
+        <td><input type="number" name="pro_amount" id="unitTotalProduct" value="1" style="width: 35px;"> <button type="button" name="btn_product_amount_change" class="btn btn-danger">변경</button></td>
         <td><span class="unitTotalprice" id="unitTotalprice">${(productVO.pro_price * productVO.pro_amount)}</span></td>
       </tr>
     </tbody>

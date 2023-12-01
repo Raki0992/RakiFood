@@ -39,7 +39,7 @@ public class CartController {
 	@PostMapping("/cart_add")
 	public ResponseEntity<String> cart_add(RFCartVO vo, HttpSession session) throws Exception {
 		
-		log.info("장바구니: " + vo);
+		log.info("장바구니: " + vo); 
 		
 		ResponseEntity<String> entity = null;
 		 

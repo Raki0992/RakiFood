@@ -238,9 +238,24 @@ $(".movepage").on("click", function(e) {
   // 구매하기버튼
   $("button[name='btn_order']").on("click", function() {
 
-    let url = "/user/order/order_ready?pro_num=" + $(this).data("pro_num") + "&cart_amount=" + $("#btn_quantity").val();
-    location.href= url;
+    let pro_num = $(this).data("pro_num");
+    let ord_amount = 1;
+
+    let url = "/user/order/buy_now?pro_num=" + pro_num + "&ord_amount=" + ord_amount;
+
+    console.log("주문작성URL :" + url);
+
+    location.href = url;  
     });
+
+    // 바로 구매하기
+  $("button[name='btn_buy']").on("click", function() {
+
+// 주문페이지, 상품코드, 수량(기본값 1)
+
+
+
+});
 
 
   // 상품이미지 또는 상품명 클릭시 상품상세로 보내는 작업

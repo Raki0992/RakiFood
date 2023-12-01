@@ -215,7 +215,7 @@ public class AdProductController {
 	}
 	
 	// 상품수정 폼 페이지
-	@GetMapping("/pro_edit")
+	@GetMapping({"/pro_edit", "/pro_get"})
 	public void pro_edit(@ModelAttribute("cri") Criteria cri, Integer pro_num, Model model) throws Exception {
 		
 		log.info("상품코드" + pro_num);

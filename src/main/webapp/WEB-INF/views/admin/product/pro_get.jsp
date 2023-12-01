@@ -66,7 +66,7 @@ desired effect
       <div class="text-center">
         <div class="box box-primary">
           <div class="box-header with-border">
-          <h3 class="box-title">상품수정</h3>
+          <h3 class="box-title">상품보기</h3>
           </div>
           
           
@@ -76,7 +76,7 @@ desired effect
 						<div class="box box-primary">
 							<div class="box-header with-border">
 								<!--  mt-5 : margin top 위쪽 여백 -->
-								<h3 class="box-title mt-5">Product Edit</h3>
+								<h3 class="box-title mt-5">Product View</h3>
                 <!-- 페이지 Criteria 사용-->
                 <form id="actionForm" action="" method="get">
                  	<input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}" />
@@ -143,7 +143,7 @@ desired effect
 										<label for="title" class="col-md-2 col-form-label">상품이미지</label> 
                     <div class="col-md-4">
                       <input type="file" class="form-control" name="uploadFile" id="uploadFile">
-                      <!-- 상품이미지 변경시 기존이미지 삭제를 위하여, 사용됨. 이미지 수정 안하는 경우에는 그대로 사용-->
+                      <!-- 상품이미지 변경시 기존이미지 삭제를 위하여, 사용됨 -->
                       <input type="hidden" name="pro_up_folder" value="${ProductVO.pro_up_folder }">
                       <input type="hidden" name="pro_img" value="${ProductVO.pro_img }">
                     </div>
