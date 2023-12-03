@@ -55,6 +55,41 @@
 	
 	<context:component-scan base-package="com.RakiFood.controller" />
 	
+	
+	<!-- 인터셉터 설정 -->
+	<!-- 사용자 -->
+	<beans:bean id="userInterceptor" class="com.RakiFood.interceptor.UserInterceptor"></beans:bean>
+
+	<interceptors>
+		<interceptor>
+			<!-- <mapping path="/member/*" />  -->
+			<!-- <exclude-mapping path="/member/confirmPw"/> -->
+
+			<mapping path="/member/confirmPw"/>
+			<mapping path="/member/modify"/>
+			<mapping path="/member/mypage"/>
+			<mapping path="/member/delConfirmPw"/>
+
+			<mapping path="/user/cart/*"/>
+
+			<mapping path="/user/order/*"/>
+
+			<beans:ref bean="userInterceptor"/>
+		</interceptor>
+	</interceptors>
+
+	<!-- 관리자 -->
+	<beans:bean id="adminInterceptor" class="com.RakiFood.interceptor.AdminInterceptor"></beans:bean>	
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/**"/>
+			<exclude-mapping path="/admin/intro"/>
+			<exclude-mapping path="/admin/admin_ok"/>
+			<beans:ref bean="adminInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>
 
 

@@ -35,4 +35,61 @@
 		WHERE 
 			CG_CODE = #{cg_code}
 	</select>
+	
+	<!-- CDATA 섹션(xml에 문법사용가능하게 함) -->
+	<select id="category_list" resultType="com.RakiFood.domain.CategoryVO" parameterType="com.RakiFood.dto.Criteria">
+	<![CDATA[
+	select 
+		cg_code, cg_parent_code, cg_name 
+	from 
+		(
+		select/*+INDEX_DESC(RF_CATEGORY_TBL index_CG_CODE)*/
+            rownum rn, cg_code, cg_parent_code, cg_name 
+		from 
+            RF_CATEGORY_TBL	
+		where 
+		]]>
+		
+		<include refid="Criteria"></include>
+		
+		<![CDATA[	
+			rownum <= #{pageNum} * #{amount}
+		)
+	where
+		 rn > (#{pageNum} -1) * #{amount} 
+		 ]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			RF_CATEGORY_TBL 
+		WHERE
+	
+		<include refid="Criteria"></include>
+		
+		cg_code > 0
+	</select>	
+	
+	<select id="category_edit" resultType="com.RakiFood.domain.CategoryVO">
+		SELECT
+			cg_code, cg_parent_code, cg_name 
+		FROM
+			RF_CATEGORY_TBL
+		WHERE
+			CG_CODE = #{cg_code}
+	</select>
+	
+	<update id="category_edit_ok" parameterType="com.RakiFood.domain.CategoryVO">
+		UPDATE
+			RF_CATEGORY_TBL
+		SET
+			cg_code = #{cg_code}, 
+			cg_parent_code = #{cg_parent_code}, 
+			cg_name = #{cg_name}
+		WHERE
+			CG_CODE = #{cg_code}
+	</update>
+	
 	</mapper>

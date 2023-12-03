@@ -5,12 +5,15 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.RakiFood.domain.CategoryVO;
+import com.RakiFood.dto.Criteria;
+import com.RakiFood.dto.PageDTO;
 import com.RakiFood.service.AdCategoryService;
 
 import lombok.RequiredArgsConstructor;
@@ -45,6 +48,22 @@ public class AdCategoryController {
 		return entity; 
 		
 	}
+	
+	// 카테고리 관리
+	@GetMapping("/category_list")
+	public void category_list(Model model, Criteria cri) throws Exception {
+		
+		List<CategoryVO> category_list = adCategoryService.category_list(cri);
+		
+		model.addAttribute("category_list", category_list);
+		
+		int totalCount = adCategoryService.getTotalCount(cri);
+		model.addAttribute("pageMaker",  new PageDTO(cri, totalCount));
+	}
+	
+	
+	
+	
 }
 
 

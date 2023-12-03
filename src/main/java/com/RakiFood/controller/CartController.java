@@ -56,7 +56,7 @@ public class CartController {
 	}
 	
 	// 장바구니 리스트
-	@GetMapping("/cart_list")
+	@GetMapping({"/cart_list", "/cart_list_buy"})
 	public void cart_list(HttpSession session, Model model) throws Exception {
 		
 		String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();

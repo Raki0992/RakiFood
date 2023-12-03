@@ -63,7 +63,7 @@
       </tr>
     </thead>
     <tbody>
-      <c:forEach items="${order_info }" var="RFCartDTO" varStatus="status">
+      <c:forEach items="${cart_list }" var="RFCartDTO" varStatus="status">
       <tr>
         <td>
         	<img width="50%" height="50" src="/user/cart/imageDisplay?dateFolderName=${RFCartDTO.pro_up_folder }&fileName=${RFCartDTO.pro_img}">
@@ -77,8 +77,8 @@
     </tbody>
     <tfoot>
     	<tr>
-        <td colspan="8" style="text-align: right;">상품 총 <span id="cart_price_count">${fn:length(order_info)}</span>
-          주문금액 : <span id="cart_total_price">${order_price}</span>
+        <td colspan="8" style="text-align: right;">상품 총 <span id="cart_price_count">${RFCartDTO.rfcart_amount }</span>
+          주문금액 : <span id="cart_total_price">${(RFCartDTO.pro_price * RFCartDTO.rfcart_amount)}</span>
         </td>
       </tr>
       
