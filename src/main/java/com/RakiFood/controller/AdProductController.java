@@ -43,7 +43,7 @@ public class AdProductController {
 	private final AdProductService adProductService;
 	private final AdCategoryService adCategoryService;
 	
-	// 메인 및 썸네일 이밎업로드 폴더경로 주입작업
+	// 메인 및 썸네일 이미지업로드 폴더경로 주입작업
 	@Resource(name = "uploadPath")	// servlet-context.xml의 bean이름 참조
 	private String uploadPath;
 	

@@ -48,9 +48,10 @@
 		from 
             RF_CATEGORY_TBL	
 		where 
+			CG_PARENT_CODE IS NULL
 		]]>
 		
-		<include refid="Criteria"></include>
+
 		
 		<![CDATA[	
 			rownum <= #{pageNum} * #{amount}
@@ -67,7 +68,7 @@
 			RF_CATEGORY_TBL 
 		WHERE
 	
-		<include refid="Criteria"></include>
+
 		
 		cg_code > 0
 	</select>	
