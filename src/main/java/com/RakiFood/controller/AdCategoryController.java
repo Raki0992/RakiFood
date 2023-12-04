@@ -7,9 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.RakiFood.domain.CategoryVO;
 import com.RakiFood.dto.Criteria;
@@ -59,6 +62,37 @@ public class AdCategoryController {
 		
 		int totalCount = adCategoryService.getTotalCount(cri);
 		model.addAttribute("pageMaker",  new PageDTO(cri, totalCount));
+	}
+	
+	// 카테고리 수정페이지
+	@GetMapping("/category_edit")
+	public void category_edit(@ModelAttribute("cri") Criteria cri, Integer cg_code, Model model) throws Exception {
+		
+		CategoryVO categoryVO = adCategoryService.category_edit(cg_code);
+		
+		model.addAttribute("categoryVO", categoryVO);
+	}
+	
+	// 카테고리 수정
+	@PostMapping("/category_edit")
+	public String category_edit(Criteria cri, CategoryVO vo, RedirectAttributes rttr) throws Exception {
+		
+		adCategoryService.category_edit_ok(vo);
+		
+		return "redirect:/admin/category/category_list";
+	}
+	
+	// 카테고리 추가
+	@GetMapping("/category_insert")
+	public void category_insert() {
+	}
+	
+	@PostMapping("/category_insert")
+	public String category_insert(CategoryVO vo, RedirectAttributes rttr) throws Exception {
+		
+		adCategoryService.category_insert(vo);
+		
+		return "redirect:/admin/category/category_insert";
 	}
 	
 	

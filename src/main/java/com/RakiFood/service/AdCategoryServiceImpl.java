@@ -51,6 +51,11 @@ public class AdCategoryServiceImpl implements AdCategoryService {
 		return adCategoryMapper.getTotalCount(cri);
 	}
 
+	@Override
+	public void category_insert(CategoryVO vo) {
+		adCategoryMapper.category_insert(vo);
+	}
+
 	
 	
 }

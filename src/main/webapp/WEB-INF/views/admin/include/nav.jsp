@@ -70,6 +70,19 @@
             <li><a href="/admin/product/pro_list">상품목록</a></li>
           </ul>
         </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>카테고리 관리</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+
+          <ul class="treeview-menu">
+            <li><a href="/admin/category/category_list">카테고리 목록</a></li>
+            <li><a href="/admin/category/category_insert">카테고리 등록</a></li>
+          </ul>
+        </li>
         
       </ul>
       <!-- /.sidebar-menu -->

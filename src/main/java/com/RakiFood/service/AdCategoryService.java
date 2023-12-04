@@ -20,4 +20,6 @@ public interface AdCategoryService {
 	CategoryVO category_edit(Integer cg_code);
 	
 	void category_edit_ok(CategoryVO vo);
+	
+	void category_insert(CategoryVO vo);
 }

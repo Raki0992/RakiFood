@@ -16,27 +16,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <%@include file="/WEB-INF/views/admin/include/plugin1.jsp" %>
   
+  <style>
+
+    tr th {
+      text-align: center;
+    }
+
+  </style>
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -66,128 +55,109 @@ desired effect
       <div class="text-center">
         <div class="box box-primary">
           <div class="box-header with-border">
-          <h3 class="box-title">카테고리 수정</h3>
+          <h3 class="box-title">카테고리 목록</h3>
           </div>
-          
-          
 
       <div class="row">
 					<div class="col-md-12">
-						<div class="box box-primary">
+						<div class="box">
 							<div class="box-header with-border">
-								<!--  mt-5 : margin top 위쪽 여백 -->
-								<h3 class="box-title mt-5">Category Edit</h3>
-                <!-- 페이지 Criteria 사용-->
-                <form id="actionForm" action="" method="get">
-                 	<input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}" />
-		            <input type="hidden" name="amount" id="amount" value="${cri.amount}" />
-		            <input type="hidden" name="type" id="type" value="${cri.type}" />
-		            <input type="hidden" name="keyword" id="keyword" value="${cri.keyword}" />
-                </form>
+								<h3 class="box-title">Category List</h3>
 							</div>
 
+              <form role="form" method="post" action="/admin/product/pro_insert">
+							<div class="box-body">
+                <div class="form-group row">
+                  <label for="title" class="col-md-2 col-form-label">카테고리</label> 
+                  <div class="col-md-3">
+                    <select class="form-control" id="firstCategory">
+                      <option>1차 카테고리 선택</option>
+                      <c:forEach items="${firstCategoryList }" var="categoryVO">
+                        <option value="${categoryVO.cg_code }">${categoryVO.cg_name }</option>
+                      </c:forEach>
+                    </select>
+                  </div>
 
-							<form role="form" method="post" action="/admin/product/pro_edit" enctype="multipart/form-data">
-								<div class="box-body">
-									<div class="form-group row">
-										<label for="title" class="col-md-2 col-form-label">카테고리</label> 
-                    <div class="col-md-3">
-                    	  <input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}" />
-		                  <input type="hidden" name="amount" id="amount" value="${cri.amount}" />
-		                  <input type="hidden" name="type" id="type" value="${cri.type}" />
-		                  <input type="hidden" name="keyword" id="keyword" value="${cri.keyword}" />
-                      <select class="form-control" id="firstCategory">
-                        <option>1차 카테고리 선택</option>
-                        <c:forEach items="${firstCategoryList }" var="categoryVO">
-                        	<option value="${categoryVO.cg_code }" ${categoryVO.cg_code == first_category.cg_parent_code? 'selected':'' }>${categoryVO.cg_name }</option>
-                        </c:forEach>
-                      </select>
-                    </div>
+                  <div class="col-md-3">
+                    <select class="form-control" id="secondCategory" name="cg_code">
+                      <option>2차 카테고리 선택</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              </form>
 
-                    <div class="col-md-3">
-                      <select class="form-control" id="secondCategory" name="cg_code">
-                        <option>2차 카테고리 선택</option>
-                        <c:forEach items="${second_categoryList }" var="categoryVO">
-                        	<option value="${categoryVO.cg_code }" ${categoryVO.cg_code == ProductVO.cg_code? 'selected':'' }>${categoryVO.cg_name }</option>
-                        </c:forEach>
-                      </select>
-                      
-                    </div>
+								<table class="table table-bordered">
+									<tbody>
+									<!-- 제목 -->
+										<tr>
+											<th style="width: 10%">카테고리 코드</th>
+											<th style="width: 10%">1차 카테고리</th>
+											<th style="width: 20%">카테고리 이름</th>
+
+											<th style="width: 3%">수정</th>
+											<th style="width: 3%">삭제</th>
+										</tr>
+										<!-- 내용 forEach안에서 id사용불가 (중복) -->
+										<c:forEach items="${category_list }" var="CategoryVO"> 
+										<tr>
+											<td class="cg_code">${CategoryVO.cg_code}</td>
+											<td>${CategoryVO.cg_parent_code}</td>
+											<td>${CategoryVO.cg_name}</td>
+											<td><button class="btn btn-warning" name="btn_category_edit">수정</button></td>
+											<td><button class="btn btn-danger btn_category_del">삭제</button></td>
+										</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="box-footer clearfix">
+								<div class="row">
+                 					<div class="col-md-4">
+										<!-- 1) 페이지번호 클릭할 때 사용 [이전] 1 2 3 4 5 [다음] -->
+										<!-- 2) 목록에서 상품이미지 또는 상품명을 클릭할 때 사용	-->
+										<form id="actionForm" action="" method="get">
+											<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}" />
+											<input type="hidden" name="amount" id="amount" value="${pageMaker.cri.amount}" />
+											<input type="hidden" name="type" id="type" value="${pageMaker.cri.type}" />
+											<input type="hidden" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" />
+										</form>
 									</div>
-
-                  <div class="form-group row">
-										<label for="title" class="col-md-2 col-form-label">상품명</label>
-                    <input type="hidden" name="pro_num" value="${ProductVO.pro_num }">
-                    <div class="col-md-4">
-                      <input type="text" class="form-control" id="pro_name" name="pro_name"	value="${ProductVO.pro_name }">
-                    </div>
-                    <label for="title" class="col-md-2 col-form-label">상품가격</label> 
-                    <div class="col-md-4">
-                      <input type="text" class="form-control" id="pro_price" name="pro_price"	value="${ProductVO.pro_price }">
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-                  <label for="title" class="col-md-2 col-form-label">할인율</label> 
-                    <div class="col-md-4">
-                      <input type="text" class="form-control" id="pro_discount" name="pro_discount"	value="${ProductVO.pro_discount }">
-                    </div>
+									<div class="col-md-6 text-center">
                     
-                    <label for="title" class="col-md-2 col-form-label">제조사</label> 
-                    <div class="col-md-4">
-                      <input type="text" class="form-control" id="pro_publisher" name="pro_publisher"	value="${ProductVO.pro_publisher }">
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-										<label for="title" class="col-md-2 col-form-label">상품이미지</label> 
-                    <div class="col-md-4">
-                      <input type="file" class="form-control" name="uploadFile" id="uploadFile">
-                      <!-- 상품이미지 변경시 기존이미지 삭제를 위하여, 사용됨. 이미지 수정 안하는 경우에는 그대로 사용-->
-                      <input type="hidden" name="pro_up_folder" value="${ProductVO.pro_up_folder }">
-                      <input type="hidden" name="pro_img" value="${ProductVO.pro_img }">
-                    </div>
-                    <label for="title" class="col-md-2 col-form-label">미리보기 이미지</label> 
-                    <div class="col-md-4">
-                      <img id="img_preview" 
-                            src="/admin/product/imageDisplay?dateFolderName=${ProductVO.pro_up_folder }&fileName=${ProductVO.pro_img }" 
-                            style="width:200px; height:200px;">
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-										<label for="title" class="col-md-2 col-form-label">상품설명</label> 
-                    <div class="col-md-10">
-                      <textarea class="form-control" name="pro_content" id="pro_content" rows="3">${ProductVO.pro_content }</textarea>
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-										<label for="title" class="col-md-2 col-form-label">수량</label> 
-                    <div class="col-md-4">
-                      <input type="text" class="form-control" id="pro_amount" name="pro_amount"	value="${ProductVO.pro_amount }">
-                    </div>
-                    <label for="title" class="col-md-2 col-form-label">판매여부</label> 
-                    <div class="col-md-4">
-                      <select class="form-control" id="pro_buy" name="pro_buy">
-                        <option value="Y" ${ProductVO.pro_buy == 'Y'? 'selected':''}>판매가능</option>
-                        <option value="N" ${ProductVO.pro_buy == 'N'? 'selected':''}>판매불가능</option>
-                      </select>
-                    </div>
-                  </div>
-                  
+										<nav aria-label="...">
+											<ul class="pagination">
+											<!-- 이전 표시여부 작업 -->
+											<c:if test="${pageMaker.prev }">
+												<li class="page-item">
+												<a href="${pageMaker.startPage - 1 }" class="page-link movepage">Previous</a>
+												</li>
+											</c:if>
+											<!-- 페이지번호  출력 작업 -->
+											<!-- 1	2	3	4	5 ... 다음 -->
+											<!-- 이전 6	7	8	9	10 ... 다음 -->
+											<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+								<!-- ''사용 -->  <li class='page-item ${pageMaker.cri.pageNum == num ? "active":"" }' aria-current="page">
+												<a class="page-link movepage" href="${num }" data-page="${num }">${num }</a>
+												</li>
+											</c:forEach>
+											<!-- 다음 표시여부 -->
+											<c:if test="${pageMaker.next }">
+											<li class="page-item">
+											<a href="${pageMaker.endPage + 1 }" class="page-link movepage" href="#">Next</a>
+											</li>
+											</c:if>
+											
+											</ul>
+										</nav>
+									</div>
+							</div>
+						</div>
 					</div>
-				<div class="box-footer">
-                  <div class="form-group">
-                    <ul class="uploadedlist"></ul>
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary">상품수정</button>
-                    <button type="reset" class="btn btn-primary" id="btn_cancel">취소</button>
-                  </div>
 				</div>
-			</form>
-
+              
+							
 				</div>
 					</div>
 						</div>
@@ -284,28 +254,58 @@ desired effect
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
-
 <%@include file="/WEB-INF/views/admin/include/plugin2.jsp" %>
-<script src="/bower_components/ckeditor/ckeditor.js"></script>
+
 <script>
   $(document).ready(function() {
-    // ckeditor 환경설정. 자바스크립트 Ojbect문법
-    var ckeditor_config = {
-         resize_enabled : false,
-         enterMode : CKEDITOR.ENTER_BR,
-         shiftEnterMode : CKEDITOR.ENTER_P,
-         toolbarCanCollapse : true,
-         removePlugins : "elementspath", 
-         //업로드 탭기능추가 속성. CKEditor에서 파일업로드해서 서버로 전송클릭하면 , 이 주소가 동작된다.
-         filebrowserUploadUrl: '/admin/product/imageUpload' 
-    }
+    
+    let actionForm = $("#actionForm");
 
-    CKEDITOR.replace("pro_content",ckeditor_config);
+    $(".movepage").on("click", function(e) {
+      e.preventDefault(); // a태그의 링크기능을 제거. href속성에 페이지번호를 숨겨둠.
 
-    console.log("ckeditor 버전 :", CKEDITOR.version);
+      actionForm.attr("action","/admin/category/category_list");
+      actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+      
+      actionForm.submit();
+    });
 
-    // 1차카테고리 선택 <select class="form-control" id="firstCategory">
-    $("#firstCategory").change(function() {
+    // 카테고리 삭제
+    $(".btn_category_del").on("click", function() {
+      
+      let cg_code = $(this).parent().parent().find(".cg_code").text();
+
+      if(!confirm("삭제하시겠습니까?")) return;
+      
+      actionForm.append('<input type="hidden" name="cg_code" id="cg_code" value="' + cg_code + '" />');
+      
+      console.log(cg_code);
+      actionForm.attr("method", "post");
+      actionForm.attr("action", "/admin/category/category_delete");
+      actionForm.submit();
+    });
+
+      // 카테고리 수정페이지로 이동
+      $("button[name='btn_category_edit']").on("click", function() {
+
+      let cg_code = $(this).parent().parent().find(".cg_code").text();
+
+      console.log(cg_code);
+      actionForm.find("#cg_code").remove();  
+      actionForm.append('<input type="hidden" name="cg_code" id="cg_code" value="' + cg_code + '" />');
+
+      actionForm.attr("method", "get");
+      actionForm.attr("action","/admin/category/category_edit");
+      actionForm.submit();  // 확인하기
+    });
+
+    // 카테고리 등록페이지로 이동
+    $("#btn_member_insert").on("click", function() {
+      location.href ="/admin/member/member_insert";
+    });
+
+      // 1차카테고리 선택 <select class="form-control" id="firstCategory">
+        $("#firstCategory").change(function() {
       // $(this) : option태그중 선택한 option태그를 가리킴
       let cg_parent_code = $(this).val();
 
@@ -339,30 +339,24 @@ desired effect
       
     });
 
-    // 파일첨부시 이미지 미리보기 <input type="file" class="form-control" name="uploadFile" id="uploadFile">
-      // 파일첨부에 따른 이벤트관련 정보를 e라는 매개변수를 통하여, 참조
-      $("#uploadFile").change(function(e) {
-        let file = e.target.files[0]; // 선택파일들중 첫번째 파일.
-        
-        let reader = new FileReader(); // 첨부된 파일을 이용하여, File객체를 생성하는 용도
-        reader.readAsDataURL(file); // reader객체에 파일정보가 할당
-
-        reader.onload = function(e) {
-          // <img id="img_preview" style="width:200px; height:200px;">
-          // e.target.result : reader객체의 이미지파일정보
-          $("#img_preview").attr("src", e.target.result);
-        }
-      });
-
-      // 상품 수정 취소
-      $("#btn_cancel").on("click", function() {
-        actionForm.append('<input type="hidden" name="pageNum" id="pageNum" value="' + pageNum + '" />');
-
-        location.href="/admin/product/pro_list";
-      });
-      
-
-  });
+  }); // ready안에 입력
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
