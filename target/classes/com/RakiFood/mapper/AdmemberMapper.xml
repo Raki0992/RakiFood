@@ -10,13 +10,13 @@
 				<trim prefix="OR">
 					<choose>
 						<when test="type == 'N'.toString()">
-							PRO_NAME like '%' || #{keyword} || '%'
+							raki_id like '%' || #{keyword} || '%'
 						</when>
 						<when test="type == 'C'.toString()">
-							PRO_NUM like '%' || #{keyword} || '%'
+							raki_name like '%' || #{keyword} || '%'
 						</when>
 						<when test="type == 'P'.toString()">
-							content like '%' || #{keyword} || '%'
+							raki_email like '%' || #{keyword} || '%'
 						</when>
 					</choose>
 				</trim>
@@ -57,7 +57,7 @@
 	
 		<include refid="Criteria"></include>
 		
-		PRO_NUM > 0
+		raki_id > 0
 	</select>	
 	
 	<delete id="member_delete" parameterType="String">

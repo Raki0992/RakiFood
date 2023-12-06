@@ -88,7 +88,7 @@ desired effect
                 </form>
 							</div>
 
-							<form role="form" method="post" action="/comm/talk_edit">
+							<form role="form" method="post" action="/admin/talk/talk_edit">
 								<div class="box-body">
 									<div class="form-group row">
                     <div class="col-md-3">

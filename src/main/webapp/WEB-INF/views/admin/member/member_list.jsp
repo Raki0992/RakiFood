@@ -70,10 +70,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <form action="/admin/member/member_list" method="get">	<!-- 검색은 get방식-->
                     <select name="type">	<!-- 주소에 맞게 name 입력 -->
                       <option selected>검색종류선택</option>
-                      <option value="N" ${pageMaker.cri.type == 'N'? 'selected': ''}>이름</option>
-                      <option value="C" ${pageMaker.cri.type == 'C'? 'selected': ''}>이메일</option>
-                      <option value="P" ${pageMaker.cri.type == 'P'? 'selected': ''}>주소</option>
-                      <option value="NP" ${pageMaker.cri.type == 'NP'? 'selected': ''}>전화번호</option>
+                      <option value="N" ${pageMaker.cri.type == 'N'? 'selected': ''}>아이디</option>
+                      <option value="C" ${pageMaker.cri.type == 'C'? 'selected': ''}>이름</option>
+                      <option value="P" ${pageMaker.cri.type == 'P'? 'selected': ''}>이메일</option>
+
                     </select>
                     <input type="text" name="keyword" value="${pageMaker.cri.keyword}" />	<!-- 주소에 맞게 name 입력 -->
                     <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}" />

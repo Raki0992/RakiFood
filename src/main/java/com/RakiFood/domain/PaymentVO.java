@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class PaymentVO {
 /*
- * CREATE TABLE PAYMENT2 (
+ * CREATE TABLE PAYMENT (
     PAY_CODE            NUMBER PRIMARY KEY,     -- 일련번호 
     ORD_CODE            NUMBER NOT NULL,        -- 주문번호
     RAKI_ID             VARCHAR2(50) NOT NULL,  -- 회원ID

@@ -208,7 +208,7 @@ public class OrderController {
 			ResponseEntity<String> entity = null;
 			
 			String raki_id = ((MemberVO) session.getAttribute("loginStatus")).getRaki_id();
-			o_vo.setRaki_id(raki_id);; // 아이디 저장.
+			o_vo.setRaki_id(raki_id); // 아이디 저장.
 			
 			// 시퀀스를 주문번호로 사용 : 동일한 주문번호값이 사용.
 			Long ord_code = (long) orderSerivce.getOrderSeq();
@@ -219,7 +219,7 @@ public class OrderController {
 			
 			p_vo.setPay_method("무통장입금");
 			p_vo.setOrd_code(ord_code);
-			p_vo.setRaki_id(raki_id);;
+			p_vo.setRaki_id(raki_id);
 			p_vo.setPay_tot_price(totalprice);
 			p_vo.setPay_nobank_price(totalprice);
 			

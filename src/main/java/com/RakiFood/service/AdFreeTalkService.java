@@ -1,15 +1,14 @@
-package com.RakiFood.mapper;
+package com.RakiFood.service;
 
 import java.util.List;
 
 import com.RakiFood.domain.FreeTalkVO;
 import com.RakiFood.dto.Criteria;
 
-public interface HomeMapper {
-
-	// 글쓰기
-	void freetalk(FreeTalkVO vo);
+public interface AdFreeTalkService {
 	
+	void freetalk(FreeTalkVO vo);
+
 	List<FreeTalkVO> free_list(Criteria cri);
 
 	int getTotalCount(Criteria cri);

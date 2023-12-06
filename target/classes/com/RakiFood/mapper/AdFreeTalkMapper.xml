@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	<mapper namespace="com.RakiFood.mapper.HomeMapper">
+	<mapper namespace="com.RakiFood.mapper.AdFreeTalkMapper">
 	
 	<insert id="freetalk" parameterType="com.RakiFood.domain.FreeTalkVO">
 		INSERT INTO 
@@ -10,7 +10,7 @@
 		VALUES(#{free_num}, #{raki_id}, #{raki_name}, #{free_title}, #{free_content}, sysdate, #{free_empty})
 	</insert>
 	
-	<!-- 공통된 sql구문작업 : 검색조건 -->
+		<!-- 공통된 sql구문작업 : 검색조건 -->
 	<sql id="Criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">	<!-- Criteria에서 getType메소드 가져와서 앞글자 소문자로 규칙-->

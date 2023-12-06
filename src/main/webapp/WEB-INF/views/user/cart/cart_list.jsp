@@ -76,7 +76,6 @@
         <td>
           <button type="button" name="btn_ajax_cart_del" class="btn btn-danger">삭제(ajax용)</button>
           <button type="button" name="btn_nonajax_cart_del" class="btn btn-danger">삭제(non-ajax용)</button>
-          <button type="button" name="btn_select_order" class="btn btn-success">구매</button>
         </td>
       </tr>
       </c:forEach>
@@ -93,7 +92,7 @@
       </tr>
       <tr>
         <td colspan="8" style="text-align: center;">
-          <button type="button" id="btn_product" class="btn btn-primary">쇼핑계속하기</button>
+          <button type="button" id="btn_shopmore" class="btn btn-primary">쇼핑계속하기</button>
           <button type="button" id="btn_order" class="btn btn-primary">주문하기</button>
         </td>
       </tr>
@@ -192,13 +191,6 @@
     //주문정보 페이지   
     $("button#btn_order").on("click", function() {
       location.href = "/user/order/order_info";
-    });
-
-    // 선택 상품 주문
-    $("button[name='btn_select_order']").on("click", function() {
-      let cur_btn_order = $(this); 
-      let rfcart_code = $(this).parent().parent().find("input[name='rfcart_code']").val();
-      location.href = "/user/cart/cart_list_buy";
     });
 
     //제목행 체크박스 선택
@@ -316,6 +308,11 @@
     });
     $("#cart_total_price").text(sumPrice);
   }
+
+  // 쇼핑계속하기
+  $("#btn_shopmore").on("click", function() {
+    location.href = "/";
+  });
 
   </script>  
   </body>
