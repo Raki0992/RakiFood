@@ -42,7 +42,7 @@
           </a>
 
           <ul class="treeview-menu">
-            <li><a href="/admin/cart/cart_list">주문정보</a></li>
+            <li><a href="/admin/order/order_list">주문정보</a></li>
           </ul>
         </li>
         

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -57,7 +58,7 @@
 	
 		<include refid="Criteria"></include>
 		
-		raki_id > 0
+		raki_zipcode > 0
 	</select>	
 	
 	<delete id="member_delete" parameterType="String">

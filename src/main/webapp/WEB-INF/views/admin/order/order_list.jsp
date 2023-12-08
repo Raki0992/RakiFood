@@ -67,13 +67,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 							<div class="box-body">
                 <div>
-                  <form action="/admin/member/member_list" method="get">	<!-- 검색은 get방식-->
+                  <form action="/admin/order/order_list" method="get">	<!-- 검색은 get방식-->
                     <select name="type">	<!-- 주소에 맞게 name 입력 -->
                       <option selected>검색종류선택</option>
-                      <option value="N" ${pageMaker.cri.type == 'N'? 'selected': ''}>이름</option>
-                      <option value="C" ${pageMaker.cri.type == 'C'? 'selected': ''}>이메일</option>
-                      <option value="P" ${pageMaker.cri.type == 'P'? 'selected': ''}>주소</option>
-                      <option value="NP" ${pageMaker.cri.type == 'NP'? 'selected': ''}>전화번호</option>
+                      <option value="N" ${pageMaker.cri.type == 'N'? 'selected': ''}>아이디</option>
+                      <option value="C" ${pageMaker.cri.type == 'C'? 'selected': ''}>결제방식</option>
+                      <option value="P" ${pageMaker.cri.type == 'P'? 'selected': ''}>주문번호</option>
                     </select>
                     <input type="text" name="keyword" value="${pageMaker.cri.keyword}" />	<!-- 주소에 맞게 name 입력 -->
                     <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}" />
@@ -85,24 +84,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<tbody>
 									<!-- 제목 -->
 										<tr>
-											<th style="width: 30%">상품</th>
-											<th style="width: 10%">상품명</th>
-											<th style="width: 20%">판매가</th>
-											<th style="width: 10%">수량</th>
-											<th style="width: 20%">합계</th>
+											<th style="width: 30%">상품코드</th>
 											<th style="width: 10%">아이디</th>
+											<th style="width: 20%">결제방식</th>
+											<th style="width: 10%">결제금액</th>
+											<th style="width: 20%">결제일</th>
+											<th style="width: 5%">수정</th>
+											<th style="width: 5%">결제일</th>
+                    
 										</tr>
 										<!-- 내용 forEach안에서 id사용불가 (중복) -->
-										<c:forEach items="${member_list }" var="memberVO"> 
+										<c:forEach items="${order_list }" var="PaymentVO"> 
 										<tr>
-											<td class="raki_id">${memberVO.raki_id}</td>
-											<td>${memberVO.raki_name}</td>
-											<td>${memberVO.raki_email}</td>
-											<td>${memberVO.raki_addr}</td>
-											<td>${memberVO.raki_phone}</td>
-											<td><fmt:formatDate value="${memberVO.raki_lastlogin }" pattern="yyyy-MM-dd" /></td>
-											<td><button class="btn btn-warning" name="btn_mem_edit">수정</button></td>
-											<td><button class="btn btn-danger btn_mem_del">삭제</button></td>
+											<td class="raki_id">${PaymentVO.ord_code}</td>
+											<td>${PaymentVO.raki_id}</td>
+											<td>${PaymentVO.pay_method}</td>
+											<td>${PaymentVO.pay_tot_price}</td>
+											<td><fmt:formatDate value="${PaymentVO.pay_date }" pattern="yyyy-MM-dd" /></td>
+											<td><button class="btn btn-warning" name="btn_order_edit">수정</button></td>
+											<td><button class="btn btn-danger btn_order_del">삭제</button></td>
 										</tr>
 										</c:forEach>
 									</tbody>
@@ -261,14 +261,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $(".movepage").on("click", function(e) {
       e.preventDefault(); // a태그의 링크기능을 제거. href속성에 페이지번호를 숨겨둠.
 
-      actionForm.attr("action","/admin/member/member_list");
+      actionForm.attr("action","/admin/order/order_list");
       actionForm.find("input[name='pageNum']").val($(this).attr("href"));
       
       actionForm.submit();
     });
 
     // 회원 삭제
-    $(".btn_mem_del").on("click", function() {
+    $(".btn_order_del").on("click", function() {
       
       let raki_id = $(this).parent().parent().find(".raki_id").text();
 
@@ -278,12 +278,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
       console.log(raki_id);
       actionForm.attr("method", "post");
-      actionForm.attr("action", "/admin/member/member_delete");
+      actionForm.attr("action", "/admin/order/order_delete");
       actionForm.submit();
     });
 
       // 회원 수정페이지로 이동
-      $("button[name='btn_mem_edit']").on("click", function() {
+      $("button[name='btn_order_edit']").on("click", function() {
 
       let raki_id = $(this).parent().parent().find(".raki_id").text();
 
@@ -292,13 +292,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       actionForm.append('<input type="hidden" name="raki_id" id="raki_id" value="' + raki_id + '" />');
 
       actionForm.attr("method", "get");
-      actionForm.attr("action","/admin/member/member_edit");
+      actionForm.attr("action","/admin/order/order_edit");
       actionForm.submit();  // 확인하기
-    });
-
-    // 회원 등록페이지로 이동
-    $("#btn_member_insert").on("click", function() {
-      location.href ="/admin/member/member_insert";
     });
 
   }); // ready안에 입력

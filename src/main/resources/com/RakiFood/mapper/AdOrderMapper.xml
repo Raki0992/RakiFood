@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.RakiFood.mapper.AdOrderMapper">
+	
+		<!-- 공통된 sql구문작업 : 검색조건 -->
+	<sql id="Criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">	<!-- Criteria에서 getType메소드 가져와서 앞글자 소문자로 규칙-->
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'N'.toString()">
+							raki_id like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'C'.toString()">
+							PAY_METHOD like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'P'.toString()">
+							ORD_CODE like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<!-- CDATA 섹션(xml에 문법사용가능하게 함) -->
+	<select id="order_list" resultType="com.RakiFood.domain.PaymentVO" parameterType="com.RakiFood.dto.Criteria">
+	<![CDATA[
+	select
+		pay_code, ORD_CODE, RAKI_ID, PAY_METHOD, PAY_DATE, PAY_TOT_PRICE, PAY_NOBANK_PRICE, PAY_NOBANK_USER, PAY_NOBANK, PAY_MEMO, PAY_BANKACCOUNT
+	from 
+		(
+		select/*+INDEX_DESC(PAYMENT pk_PAYMENT)*/
+            rownum rn, pay_code, ORD_CODE, RAKI_ID, PAY_METHOD, PAY_DATE, PAY_TOT_PRICE, PAY_NOBANK_PRICE, PAY_NOBANK_USER, PAY_NOBANK, PAY_MEMO, PAY_BANKACCOUNT
+		from 
+            PAYMENT	
+		where 
+		]]>
+		
+		<include refid="Criteria"></include>
+		
+		<![CDATA[	
+			rownum <= #{pageNum} * #{amount}
+		)
+	where
+		 rn > (#{pageNum} -1) * #{amount} 
+		 ]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			PAYMENT 
+		WHERE
+	
+		<include refid="Criteria"></include>
+		
+		pay_code > 0
+	</select>	
+	
+	</mapper>

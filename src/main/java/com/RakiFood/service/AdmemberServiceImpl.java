@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.RakiFood.domain.MemberVO;
+import com.RakiFood.mapper.AdmemberMapper;
 
 import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class AdmemberServiceImpl implements AdmemberService {
 
-	private final com.RakiFood.mapper.AdmemberMapper admemberMapper;
+	private final AdmemberMapper admemberMapper;
 
 	@Override
 	public List<com.RakiFood.domain.MemberVO> member_list(com.RakiFood.dto.Criteria cri) {
