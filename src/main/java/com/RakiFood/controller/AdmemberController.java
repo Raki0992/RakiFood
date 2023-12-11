@@ -33,8 +33,6 @@ public class AdmemberController {
 		@GetMapping("/member_list")
 		public void member_list(Criteria cri, Model model) throws Exception {
 
-			// 출력할 데이터 수 변경안하면 10	 (Criteria)
-			cri.setAmount(2);
 			
 			List<MemberVO> member_list = admemberService.member_list(cri);
 			

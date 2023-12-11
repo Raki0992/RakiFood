@@ -161,8 +161,22 @@
 </div>
 
 <%@include file="/WEB-INF/views/comm/plugin.jsp" %>
-<!-- 카테고리 메뉴 자바스크립트 작업 -->
-<script src="/js/category_menu.js"></script>
+<script>
+ $(document).ready(function() {
+    
+    let actionForm = $("#actionForm");
+
+    $(".movepage").on("click", function(e) {
+      e.preventDefault(); // a태그의 링크기능을 제거. href속성에 페이지번호를 숨겨둠.
+
+      actionForm.attr("action","/comm/talk");
+      actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+      
+      actionForm.submit();
+    });
+
+  });
+</script>
     
   </body>
 </html>
