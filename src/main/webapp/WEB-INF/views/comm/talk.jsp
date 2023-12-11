@@ -41,8 +41,6 @@
     
 <%@include file="/WEB-INF/views/comm/header.jsp" %>
 
-<%@include file="/WEB-INF/views/comm/category_menu.jsp" %>
-
 <!-- Main content -->
 <section class="content container-fluid">
 
@@ -162,21 +160,21 @@
 
 <%@include file="/WEB-INF/views/comm/plugin.jsp" %>
 <script>
- $(document).ready(function() {
-    
-    let actionForm = $("#actionForm");
-
-    $(".movepage").on("click", function(e) {
-      e.preventDefault(); // a태그의 링크기능을 제거. href속성에 페이지번호를 숨겨둠.
-
-      actionForm.attr("action","/comm/talk");
-      actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-      
-      actionForm.submit();
-    });
-
-  });
-</script>
+  $(document).ready(function() {
+     
+     let actionForm = $("#actionForm");
+ 
+     $(".movepage").on("click", function(e) {
+       e.preventDefault(); // a태그의 링크기능을 제거. href속성에 페이지번호를 숨겨둠.
+ 
+       actionForm.attr("action","/comm/talk");
+       actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+       
+       actionForm.submit();
+     });
+ 
+   });
+ </script>
     
   </body>
 </html>
