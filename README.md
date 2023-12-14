@@ -11,3 +11,18 @@ API : 카카오개발자 API 이해 및 활용
 Model
 ![관계형모델](https://github.com/Raki0992/RakiFood/assets/145024821/3723a4cd-b241-413e-beac-4707e691ee3e)
 사용자 메인페이지
+![메인페이지](https://github.com/Raki0992/RakiFood/assets/145024821/55d3a86b-ef08-4c17-b904-60f78ddc525a)
+게시판
+![게시판](https://github.com/Raki0992/RakiFood/assets/145024821/b7698a39-d5bf-4f06-9577-7a00eeec556f)
+회원가입
+![회원가입](https://github.com/Raki0992/RakiFood/assets/145024821/a3eab09a-913e-47dc-8078-2564659c82fd)
+아이디검사
+![아이디검사](https://github.com/Raki0992/RakiFood/assets/145024821/36c923e1-f039-450b-8e85-f99f8a7d0e74)
+비밀번호검사
+![비밀번호1](https://github.com/Raki0992/RakiFood/assets/145024821/a4720969-43ff-40b2-8ea4-e7709e05d3b8)
+![비밀번호2](https://github.com/Raki0992/RakiFood/assets/145024821/b80ecb61-3f99-4eac-9af7-71c8f60f9235)
+메일인증
+![메일 인증하기](https://github.com/Raki0992/RakiFood/assets/145024821/6bb814c1-f763-4e58-89bb-72857b247ca5)
+![메일 인증하기2](https://github.com/Raki0992/RakiFood/assets/145024821/3d1f354a-80b4-4680-b7b9-5ea78980de41)
+주소(카카오 API)
+![주소기능](https://github.com/Raki0992/RakiFood/assets/145024821/658d23bd-2a6f-4011-b3f4-c3df50963543)
