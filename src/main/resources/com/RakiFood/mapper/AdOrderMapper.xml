@@ -6,46 +6,53 @@
 	
 		<!-- 공통된 sql구문작업 : 검색조건 -->
 	<sql id="Criteria">
-		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-			<foreach collection="typeArr" item="type">	<!-- Criteria에서 getType메소드 가져와서 앞글자 소문자로 규칙-->
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">		<!-- 파라미터가 여러개면 소속을 표시해야함(cri.) -->
+			<foreach collection="cri.typeArr" item="type">	<!-- Criteria에서 getType메소드 가져와서 앞글자 소문자로 규칙-->
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'N'.toString()">
-							raki_id like '%' || #{keyword} || '%'
+						<when test="cri.type == 'N'.toString()">
+							ORD_NAME like '%' || #{cri.keyword} || '%'
 						</when>
-						<when test="type == 'C'.toString()">
-							PAY_METHOD like '%' || #{keyword} || '%'
-						</when>
-						<when test="type == 'P'.toString()">
-							ORD_CODE like '%' || #{keyword} || '%'
+						<when test="cri.type == 'C'.toString()">
+							ORD_CODE like '%' || #{cri.keyword} || '%'
 						</when>
 					</choose>
 				</trim>
 			</foreach>
 		</trim>
 	</sql>
+		
+	<sql id="period">												<!-- include 하나 더 추가시  sql작성-->
+		<if test="start_date != null and !start_date.equals('')">	<!-- 날짜는 0시 0분 0초로 되기때문에 시작날짜는 상관 없지만 마지막 날짜는 +1 하루 더함 -->
+			<![CDATA[	
+				ORD_REGDATE >= to_date(#{start_date}) AND ORD_REGDATE < to_date(#{end_date}) + 1 AND
+			]]>
+		</if>
+	</sql>
 	
-	<!-- CDATA 섹션(xml에 문법사용가능하게 함) -->
-	<select id="order_list" resultType="com.RakiFood.domain.PaymentVO" parameterType="com.RakiFood.dto.Criteria">
+<!-- CDATA 섹션(xml에 문법사용가능하게 함) -->
+	<select id="order_list" resultType="com.RakiFood.domain.OrderVO" parameterType="com.RakiFood.dto.Criteria">
 	<![CDATA[
-	select
-		pay_code, ORD_CODE, RAKI_ID, PAY_METHOD, PAY_DATE, PAY_TOT_PRICE, PAY_NOBANK_PRICE, PAY_NOBANK_USER, PAY_NOBANK, PAY_MEMO, PAY_BANKACCOUNT
+	select 
+		ord_code, raki_ID, ORD_NAME, ORD_ZIPCODE, ORD_ADDR_BASIC, ORD_ADDR_DETAIL, ORD_TEL, ORD_PRICE, ORD_REGDATE, ORD_STATUS, PAYMENT_STATUS
 	from 
 		(
-		select/*+INDEX_DESC(PAYMENT pk_PAYMENT)*/
-            rownum rn, pay_code, ORD_CODE, RAKI_ID, PAY_METHOD, PAY_DATE, PAY_TOT_PRICE, PAY_NOBANK_PRICE, PAY_NOBANK_USER, PAY_NOBANK, PAY_MEMO, PAY_BANKACCOUNT
+		select/*+INDEX_DESC(RF_ORDER_TBL pk_RF_ORDER_TBL)*/
+            rownum rn, ord_code, raki_ID, ORD_NAME, ORD_ZIPCODE, ORD_ADDR_BASIC, ORD_ADDR_DETAIL, ORD_TEL, ORD_PRICE, ORD_REGDATE, ORD_STATUS, PAYMENT_STATUS
 		from 
-            PAYMENT	
+            RF_ORDER_TBL	
 		where 
 		]]>
 		
 		<include refid="Criteria"></include>
+		<include refid="period"></include>
+		
 		
 		<![CDATA[	
-			rownum <= #{pageNum} * #{amount}
+			rownum <= #{cri.pageNum} * #{cri.amount}
 		)
 	where
-		 rn > (#{pageNum} -1) * #{amount} 
+		 rn > (#{cri.pageNum} -1) * #{cri.amount} 
 		 ]]>
 	</select>
 	
@@ -53,12 +60,78 @@
 		SELECT 
 			COUNT(*) 
 		FROM 
-			PAYMENT 
+			RF_ORDER_TBL 
 		WHERE
 	
 		<include refid="Criteria"></include>
+		<include refid="period"></include>
 		
-		pay_code > 0
+		ord_code > 0
 	</select>	
+	
+	<select id="OrderDetailInfo1" resultType="com.RakiFood.domain.OrderDetailInfoVO">
+		SELECT 
+			OT.ord_code, OT.PRO_NUM, OT.DT_AMOUNT, OT.DT_AMOUNT * P.PRO_PRICE as ORD_PRICE,
+	        P.PRO_NAME, P.PRO_PRICE, P.PRO_UP_FOLDER, P.PRO_IMG
+		FROM 
+			ORDETAIL_TBL OT, PRODUCT_TBL P
+		WHERE 
+			OT.PRO_NUM = P.PRO_NUM
+		AND 
+			OT.ORD_CODE = #{ord_code}
+	</select>
+	
+	<!-- resultType을 사용하지 않고, resultMap -->
+	<!-- 클래스안에 다른클래스가 필드로 사용이 된 경우 -->
+	<select id="OrderDetailInfo2" parameterType="Long" resultMap="orderDetailProductMap">
+		SELECT 
+			OT.ord_code, OT.PRO_NUM, OT.DT_AMOUNT, OT.DT_AMOUNT * P.PRO_PRICE as ORD_PRICE,
+	        P.PRO_NAME, P.PRO_PRICE, P.PRO_UP_FOLDER, P.PRO_IMG
+		FROM 
+			ORDETAIL_TBL OT, PRODUCT_TBL P
+		WHERE 
+			OT.PRO_NUM = P.PRO_NUM
+		AND 
+			OT.ORD_CODE = #{ord_code}
+	</select>
+	
+	<resultMap type="com.RakiFood.domain.OrderDetailProductVO" id="orderDetailProductMap">
+		<collection property="orderDetailVO" resultMap="orderDetailMap"></collection>
+		<collection property="productVO" resultMap="productMap"></collection>
+	</resultMap>
+	
+	<!-- resultMap : 테이블의 컬럼명과 클래스의 필드명이 다를경우 매핑하는 목적 -->
+	
+	<!-- orderDetailVO필드에서 필요한 정보	id는 맘대로 만들어서 resultMap에 주입-->
+	<resultMap type="com.RakiFood.domain.OrderDetailVO" id="orderDetailMap">
+		<id property="ord_code" column="ORD_CODE"/>	<!-- id는 primary key -->
+		<id property="pro_num" column="PRO_NUM"/>	<!-- id는 primary key -->
+		<result property="dt_amount" column="DT_AMOUNT"/>
+		<result property="dt_price" column="DT_PRICE"/>
+	</resultMap>
+	<resultMap type="com.RakiFood.domain.ProductVO" id="productMap">
+		<id property="pro_num" column="PRO_NUM"/>	<!-- id는 primary key -->
+		<result property="cg_code" column="CG_CODE"/>
+		<result property="pro_name" column="PRO_NAME"/>
+		<result property="pro_price" column="PRO_PRICE"/>
+		<result property="pro_discount" column="PRO_DISCOUNT"/>
+		<result property="pro_publisher" column="PRO_PUBLISHER"/>
+		<result property="pro_content" column="PRO_CONTENT"/>
+		<result property="pro_up_folder" column="PRO_UP_FOLDER"/>
+		<result property="pro_img" column="PRO_IMG"/>
+		<result property="pro_amount" column="PRO_AMOUNT"/>
+		<result property="pro_buy" column="PRO_BUY"/>
+		<result property="pro_date" column="PRO_DATE"/>
+		<result property="pro_updatedate" column="PRO_UPDATEDATE"/>
+	</resultMap>
+	
+	<!-- 테이블의 컬럼명과 클래스의 필드명이 다른 경우 -->
+	
+	<delete id="order_product_delete" parameterType="map">
+		DELETE FROM
+			ORDETAIL_TBL
+		WHERE
+			ORD_CODE = #{ord_code} AND PRO_NUM = #{pro_num}
+	</delete>
 	
 	</mapper>

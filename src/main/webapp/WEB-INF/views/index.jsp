@@ -44,125 +44,54 @@
 <%@include file="/WEB-INF/views/comm/category_menu.jsp" %>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">Pricing</h1>
-  <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. </p>
+  <h1 class="display-4">RakiFood</h1>
+  <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example.(부트스트랩) </p>
+          <!-- 로그인 안한 상태에서 버튼생기고 클릭시 이동 -->
+        <c:if test="${sessionScope.loginStatus == null }">
+        <a href="/member/join">
+        <button type="button" class="btn btn-lg btn-block btn-outline-primary" >Sign up for free</button>
+        </a>
+        </c:if>
 </div>
 
 <div class="container">
   <div class="card-deck mb-3 text-center">
     <div class="card mb-4 shadow-sm">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal">1</h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>10 users included</li>
-          <li>2 GB of storage</li>
-          <li>Email support</li>
-          <li>Help center access</li>
-        </ul>
-
-        <!-- 로그인 안한 상태에서 버튼생기고 클릭시 이동 -->
-        <c:if test="${sessionScope.loginStatus == null }">
-        <a href="/member/join">
-        <button type="button" class="btn btn-lg btn-block btn-outline-primary" >Sign up for free</button>
-        </a>
-        </c:if>
-      </div>
-    </div>
-
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">2</h4>
+        <h4 class="my-0 font-weight-normal">국밥</h4>
       </div>
       <div class="card-body">
         <figure>
-          <img src="https://www.w3schools.com/tags/pic_trulli.jpg" alt="Trulli" style="width: 200px; height: 200px;" >
-        </figure>
-        <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>20 users included</li>
-          <li>10 GB of storage</li>
-          <li>Priority email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+          <img src="/resources/image/국밥.jpg" alt="국밥" style="width: 200px; height: 200px;" ></img>
+		</figure>
+        <h1 class="card-title pricing-card-title"> <small class="text-muted">￦8,000</small></h1>
       </div>
     </div>
 
     <div class="card mb-4 shadow-sm">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal">3</h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>30 users included</li>
-          <li>15 GB of storage</li>
-          <li>Phone and email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
-      </div>
-    </div>
-
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">4</h4>
+        <h4 class="my-0 font-weight-normal">김치찌개</h4>
       </div>
       <div class="card-body">
         <figure>
-          <img src="https://www.w3schools.com/tags/pic_trulli.jpg" alt="Trulli" style="width: 200px; height: 200px;" >
-        </figure>
-        <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>20 users included</li>
-          <li>10 GB of storage</li>
-          <li>Priority email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+          <img src="/resources/image/김치찌개.jpg" alt="김치찌개" style="width: 200px; height: 200px;" ></img>
+		</figure>
+        <h1 class="card-title pricing-card-title"><small class="text-muted">￦10,000</small></h1>
       </div>
     </div>
 
     <div class="card mb-4 shadow-sm">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal">5</h4>
+        <h4 class="my-0 font-weight-normal">삼겹살</h4>
       </div>
       <div class="card-body">
         <figure>
-          <img src="https://www.w3schools.com/tags/pic_trulli.jpg" alt="Trulli" style="width: 200px; height: 200px;" >
-        </figure>
-        <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>20 users included</li>
-          <li>10 GB of storage</li>
-          <li>Priority email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+          <img src="/resources/image/삼겹살.jpg" alt="삼겹살" style="width: 200px; height: 200px;" ></img>
+		</figure>
+        <h1 class="card-title pricing-card-title"><small class="text-muted">￦18,000</small></h1>
       </div>
     </div>
 
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">6</h4>
-      </div>
-      <div class="card-body">
-        <figure>
-          <img src="https://www.w3schools.com/tags/pic_trulli.jpg" alt="Trulli" style="width: 200px; height: 200px;" >
-        </figure>
-        <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>20 users included</li>
-          <li>10 GB of storage</li>
-          <li>Priority email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
-      </div>
-    </div>
   </div>
 
   <%@include file="/WEB-INF/views/comm/footer.jsp" %>
