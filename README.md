@@ -10,3 +10,4 @@ API : 카카오개발자 API 이해 및 활용
 
 Model
 ![관계형모델](https://github.com/Raki0992/RakiFood/assets/145024821/3723a4cd-b241-413e-beac-4707e691ee3e)
+사용자 메인페이지
