@@ -1,1 +1,9 @@
-리드미 작성하기
+프로젝트
+SKILLS 
+Java :  객체지향프로그래밍(OOP), 컬렉션프레임워크 (ArrayList, Set, Map), 파일입출력, 스레드, JDBC 연동의 이해 및 활용
+Oracle : ORACLE 서버구축, 데이터모델링(ERD) 및 CRUD에 맞는 최적의 데이터 타입 선정, 기본키 & 외래키 등을 사용한 관계형 데이터베이스 구축, SQL기초 (데이터조작어, 데이터 정의)의 이해 및 활용, SQL고급(내장함수, 뷰, 인덱스)의 활용 및 가능, 서브쿼리와 JOIN의 이해 및 원하는 데이터 정제 가능, 트랜잭션(commit과 rollback)의 이해 및 활용, DB(ORACLE + MYSQL)연동 자바 및 웹프로그래밍, 사용자관리, 권한부여, 백업 및 복원
+Html/Css : HTML과 CSS의 기본이해 및 간단한 수정, 활용 가능
+Spring FrameWork : SPRING FRAMEWORK 프로그래밍에 필요한 환경설정 및 공통모듈 개발, 댓글, 페이징, 파일업로드 가능한 게시판 구현, SPRING MYBATIS, ORACLE 연동 및 MAPPER 작성, TRANSACTION의 이해, INTERCEPTOR를 활용한 로그인 접근권한 설정, SPRING SECURITY를 이용한 비밀번호 암호화, 이메일 전송 기능 구현 
+JSP : MVC2모델 기반의 CRUD, 댓글, 페이징 가능한 게시판, 회원관리, 파일업로드, 쿠키 및 세션을 활용하여 회원정보 관리, 게시판 구현 EL, JSTL 등을 활용하여 효율적인 화면구현, AJAX, DTO의 이해 및 활용, JSP웹프로그래밍 작성에 필요한 JDK, TOMCAT, ECLIPSE 환경설정 및 디버깅
+JS/Jquery :  기본 문법 이해 및 수정 가능, JS를 활용한 폼태그의 정규식을 활용하여 유효성검사규칙 구현, JQUERY기반의 AJAX를 사용한 회원가입 시 아이디 중복검사, 비밀번호 확인, 이메일 인증코드 확인 등의기능 구현, DAUM API를 활용한 우편번호 검색 기능 구현, JSON, XML 파싱
+API : 카카오개발자 API 이해 및 활용
