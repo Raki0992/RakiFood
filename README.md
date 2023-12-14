@@ -79,7 +79,7 @@ Model
 ![관리자 상품목록](https://github.com/Raki0992/RakiFood/assets/145024821/ca826ab6-5623-46c4-9647-b27c10822902)
 
 관리자 주문관리
-![관리자 주문관리](https://github.com/Raki0992/RakiFood/assets/145024821/8e940589-3b1f-4539-94cf-96b2ee1d29e8)
+![관리자 주문관리](https://github.com/Raki0992/RakiFood/assets/145024821/3b289dae-b2ce-40d1-b8d0-663cbd25ef57)
 
 관리자 카테고리 관리
 ![관리자 카테고리 관리](https://github.com/Raki0992/RakiFood/assets/145024821/7af75247-54be-4422-ae29-1c73e2eb1461)
