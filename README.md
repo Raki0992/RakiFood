@@ -42,3 +42,11 @@ Model
 
 회원수정페이지
 ![지회원수정페이지](https://github.com/Raki0992/RakiFood/assets/145024821/caae68fc-14a0-448f-9a3e-d1a2076c9abd)
+
+상품상세
+![상품상세](https://github.com/Raki0992/RakiFood/assets/145024821/31554f0c-8e62-433b-9390-411421470369)
+
+상품후기 수정삭제(사용자 아이디 세션사용)
+![상품후기 수정삭제(아이디 참조)](https://github.com/Raki0992/RakiFood/assets/145024821/e75884f5-9786-475e-b9cd-c35024720f11)
+![상품후기 수정하기](https://github.com/Raki0992/RakiFood/assets/145024821/b835ef98-6a18-450e-a066-ea9003f49db1)
+![상품후기](https://github.com/Raki0992/RakiFood/assets/145024821/8a5834bb-7707-44f9-b080-7bbed07e036d)
