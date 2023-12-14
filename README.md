@@ -33,3 +33,12 @@ Model
 
 주소(카카오 API)
 ![주소기능](https://github.com/Raki0992/RakiFood/assets/145024821/658d23bd-2a6f-4011-b3f4-c3df50963543)
+
+로그인
+![로그인](https://github.com/Raki0992/RakiFood/assets/145024821/b6f3f34f-4153-4577-9b6d-85850c20d2b4)
+
+아이디 비번찾기
+![아이디   비번찾기](https://github.com/Raki0992/RakiFood/assets/145024821/f63fe20c-1d6c-4c46-8884-12a6c74cdecc)
+
+회원수정페이지
+![지회원수정페이지](https://github.com/Raki0992/RakiFood/assets/145024821/caae68fc-14a0-448f-9a3e-d1a2076c9abd)
