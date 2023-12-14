@@ -78,7 +78,7 @@ Model
 관리자 상품목록
 ![관리자 상품목록](https://github.com/Raki0992/RakiFood/assets/145024821/ca826ab6-5623-46c4-9647-b27c10822902)
 
-관리자 주문관리(날짜 검색 추가) + 핸들바로 주문상세 팝업
+관리자 주문관리(날짜 검색 추가) & load()로 주문상세 팝업
 ![관리자 주문관리](https://github.com/Raki0992/RakiFood/assets/145024821/3b289dae-b2ce-40d1-b8d0-663cbd25ef57)
 ![주문상세2](https://github.com/Raki0992/RakiFood/assets/145024821/140412d3-ceb6-4289-a335-22ad1879cb61)
 
