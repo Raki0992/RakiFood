@@ -7,3 +7,6 @@ Spring FrameWork : SPRING FRAMEWORK 프로그래밍에 필요한 환경설정 �
 JSP : MVC2모델 기반의 CRUD, 댓글, 페이징 가능한 게시판, 회원관리, 파일업로드, 쿠키 및 세션을 활용하여 회원정보 관리, 게시판 구현 EL, JSTL 등을 활용하여 효율적인 화면구현, AJAX, DTO의 이해 및 활용, JSP웹프로그래밍 작성에 필요한 JDK, TOMCAT, ECLIPSE 환경설정 및 디버깅
 JS/Jquery :  기본 문법 이해 및 수정 가능, JS를 활용한 폼태그의 정규식을 활용하여 유효성검사규칙 구현, JQUERY기반의 AJAX를 사용한 회원가입 시 아이디 중복검사, 비밀번호 확인, 이메일 인증코드 확인 등의기능 구현, DAUM API를 활용한 우편번호 검색 기능 구현, JSON, XML 파싱
 API : 카카오개발자 API 이해 및 활용
+
+Model
+https://github.com/Raki0992/RakiFood/assets/145024821/3723a4cd-b241-413e-beac-4707e691ee3e
