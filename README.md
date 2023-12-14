@@ -63,11 +63,11 @@ Model
 수량변경
 ![장바구니 수량변경](https://github.com/Raki0992/RakiFood/assets/145024821/7e4666b7-bf95-49b4-939c-d033134c5a2b)
 
-주문 및 결제하기
-![주문및결제하기](https://github.com/Raki0992/RakiFood/assets/145024821/e85343a7-ef34-4081-b1fa-0287973c6002)
-
 장바구니 없이 바로 구매하기
 ![바로구매하기](https://github.com/Raki0992/RakiFood/assets/145024821/4eda49ca-a1aa-49d6-8cc8-026bfb842d5b)
+
+주문 및 결제하기
+![주문및결제하기](https://github.com/Raki0992/RakiFood/assets/145024821/e85343a7-ef34-4081-b1fa-0287973c6002)
 
 카카오페이 결제
 ![카카오페이](https://github.com/Raki0992/RakiFood/assets/145024821/44ffed74-afd5-452b-a9fe-7f0f3ef74b29)
