@@ -90,6 +90,6 @@ Model
 관리자 회원관리
 ![관리자 회원관리](https://github.com/Raki0992/RakiFood/assets/145024821/f6fc57b8-40bf-4e0e-bd57-b6b96ffcf6c3)
 
-관리자 상품등록
+관리자 상품등록(CKEditor 사용하여 파일업로드 기능, 썸네일 기능, 이미지 업로드 기능 구현)
 ![록관리자 상품등록](https://github.com/Raki0992/RakiFood/assets/145024821/7f2fb4aa-0d6b-4de4-8788-94646523631e)
 
