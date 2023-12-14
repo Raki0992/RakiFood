@@ -51,3 +51,8 @@ Model
 ![상품후기](https://github.com/Raki0992/RakiFood/assets/145024821/8a5834bb-7707-44f9-b080-7bbed07e036d)
 ![상품후기 수정하기](https://github.com/Raki0992/RakiFood/assets/145024821/b835ef98-6a18-450e-a066-ea9003f49db1)
 
+장바구니
+![장바구니 (2)](https://github.com/Raki0992/RakiFood/assets/145024821/f5d72cbd-b686-475f-9051-d74ef2314e7a)
+![장바구니 및 바로구매하기](https://github.com/Raki0992/RakiFood/assets/145024821/739ef0c3-23d4-4046-9c1a-32e208b36c45)
+![장바구니 수량변경](https://github.com/Raki0992/RakiFood/assets/145024821/7e4666b7-bf95-49b4-939c-d033134c5a2b)
+![장바구니](https://github.com/Raki0992/RakiFood/assets/145024821/d0f08411-a7b9-4e89-b600-a382a5baba5e)
