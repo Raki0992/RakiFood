@@ -53,6 +53,11 @@ Model
 
 장바구니
 ![장바구니 (2)](https://github.com/Raki0992/RakiFood/assets/145024821/f5d72cbd-b686-475f-9051-d74ef2314e7a)
+
+쇼핑계속하기
 ![장바구니 및 바로구매하기](https://github.com/Raki0992/RakiFood/assets/145024821/739ef0c3-23d4-4046-9c1a-32e208b36c45)
+
+수량변경
 ![장바구니 수량변경](https://github.com/Raki0992/RakiFood/assets/145024821/7e4666b7-bf95-49b4-939c-d033134c5a2b)
+
 ![장바구니](https://github.com/Raki0992/RakiFood/assets/145024821/d0f08411-a7b9-4e89-b600-a382a5baba5e)
