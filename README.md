@@ -9,4 +9,4 @@ JS/Jquery :  기본 문법 이해 및 수정 가능, JS를 활용한 폼태그�
 API : 카카오개발자 API 이해 및 활용
 
 Model
-https://github.com/Raki0992/RakiFood/assets/145024821/3723a4cd-b241-413e-beac-4707e691ee3e
+![관계형모델](https://github.com/Raki0992/RakiFood/assets/145024821/3723a4cd-b241-413e-beac-4707e691ee3e)
