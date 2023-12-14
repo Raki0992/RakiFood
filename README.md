@@ -72,4 +72,24 @@ Model
 카카오페이 결제
 ![카카오페이](https://github.com/Raki0992/RakiFood/assets/145024821/44ffed74-afd5-452b-a9fe-7f0f3ef74b29)
 
-![카테고리출력 메인페이지](https://github.com/Raki0992/RakiFood/assets/145024821/3522868c-5b54-4e63-bedc-14fb05658bdb)
+관리자 게시판 관리
+![게시판 관리](https://github.com/Raki0992/RakiFood/assets/145024821/b3393adb-941f-4d84-9516-99ec8ef6a886)
+
+관리자 상품목록
+![관리자 상품목록](https://github.com/Raki0992/RakiFood/assets/145024821/ca826ab6-5623-46c4-9647-b27c10822902)
+
+관리자 주문관리
+![관리자 주문관리](https://github.com/Raki0992/RakiFood/assets/145024821/8e940589-3b1f-4539-94cf-96b2ee1d29e8)
+
+관리자 카테고리 관리
+![관리자 카테고리 관리](https://github.com/Raki0992/RakiFood/assets/145024821/7af75247-54be-4422-ae29-1c73e2eb1461)
+
+관리자 카테고리 등록
+![관리자 카테고리 등록](https://github.com/Raki0992/RakiFood/assets/145024821/2c6cc4b1-6445-4666-9d16-ceec90f9805a)
+
+관리자 회원관리
+![관리자 회원관리](https://github.com/Raki0992/RakiFood/assets/145024821/f6fc57b8-40bf-4e0e-bd57-b6b96ffcf6c3)
+
+관리자 상품등록
+![록관리자 상품등록](https://github.com/Raki0992/RakiFood/assets/145024821/7f2fb4aa-0d6b-4de4-8788-94646523631e)
+
